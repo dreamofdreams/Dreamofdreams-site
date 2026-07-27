@@ -132,28 +132,37 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
                     border: 0;
                 }
                 /* Hero section background */
-                section.elementor-element-1ef9d92 {
+                section.elementor-element-5def906 {
                     position: relative !important;
                     background-color: transparent !important;
                     background-image: url("./wp-content/uploads/2026/04/wallpaper.jpg") !important;
                     background-size: cover !important;
                     background-position: center center !important;
                     background-repeat: no-repeat !important;
-                    background-attachment: scroll !important;
                 }
 
-                section.elementor-element-1ef9d92 > .elementor-container {
-                    position: relative !important;
-                    z-index: 2 !important;
-                }
-
-                section.elementor-element-1ef9d92::before {
+                section.elementor-element-5def906::before {
                     content: "" !important;
                     position: absolute !important;
                     inset: 0 !important;
+                    background: rgba(12, 8, 4, 0.35) !important;
+                    z-index: 0 !important;
+                }
+
+                section.elementor-element-5def906 > .elementor-container {
+                    position: relative !important;
                     z-index: 1 !important;
-                    pointer-events: none !important;
-                    background: rgba(7, 5, 3, 0.42) !important;
+                }
+                
+                /* Remove background from previous section */
+                section.elementor-element-1ef9d92 {
+                    background-image: none !important;
+                }
+                
+                /* Ensure child elements do not cover the background */
+                section.elementor-element-5def906 .elementor-column,
+                section.elementor-element-5def906 .elementor-widget-wrap {
+                    background: transparent !important;
                 }
 			</style>
 			<link rel="icon" href="wp-content/uploads/2026/04/cropped-freepik__background__33882-1-32x32.webp" sizes="32x32" />
