@@ -674,11 +674,48 @@ and insights of Lorenzo D. Strother.								</div>
 				<div class="elementor-element elementor-element-446a5a1 elementor-align-center elementor-invisible elementor-widget elementor-widget-button" data-id="446a5a1" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_mobile&quot;:&quot;none&quot;}" data-widget_type="button.default">
 				<div class="elementor-widget-container">
 									<div class="elementor-button-wrapper">
-					<a class="elementor-button elementor-button-link elementor-size-sm" href="index.html#0">
-						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">Join the Legacy</span>
-					</span>
-					</a>
+                    <!-- Newsletter Form Container -->
+                    <div id="newsletter-form-container">
+                      <form id="newsletter-form" action="https://docs.google.com/forms/d/e/1FAIpQLSeBrYhqogJqswh5uKweMn9iL_nA65Qa-LAlWXYAmznkMFfqTA/formResponse" method="POST" target="newsletter-submit-frame">
+                        <input type="email" name="entry.1335451090" placeholder="Email Address" required autocomplete="email" style="padding: 10px; width: 100%; margin-bottom: 10px;">
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none;">
+                        <p style="font-size: 0.8em; margin-bottom: 10px;">By subscribing, you agree to receive Dream of Dreams updates. You can unsubscribe at any time.</p>
+                        <button id="newsletter-submit" type="submit" class="elementor-button elementor-size-sm">
+                          <span class="elementor-button-content-wrapper">
+                            <span class="elementor-button-text">JOIN THE LEGACY</span>
+                          </span>
+                        </button>
+                      </form>
+                      <div id="newsletter-response" aria-live="polite" style="margin-top: 10px; font-weight: bold; display:none;"></div>
+                    </div>
+                    <iframe name="newsletter-submit-frame" id="newsletter-submit-frame" style="display:none;" aria-hidden="true"></iframe>
+                    <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                        const form = document.getElementById('newsletter-form');
+                        const submitButton = document.getElementById('newsletter-submit');
+                        const responseMessage = document.getElementById('newsletter-response');
+
+                        form.addEventListener('submit', function(e) {
+                          // Honeypot
+                          if (form.querySelector('input[name="website"]').value !== '') {
+                            e.preventDefault();
+                            return;
+                          }
+                          
+                          submitButton.disabled = true;
+                          submitButton.querySelector('.elementor-button-text').textContent = 'Sending...';
+                          responseMessage.style.display = 'block';
+                          responseMessage.textContent = 'Submitting...';
+                          
+                          // After submission, assume success because we can't read cross-origin iframe response
+                          setTimeout(function() {
+                            form.style.display = 'none';
+                            responseMessage.textContent = 'Thank you for joining the legacy.';
+                            responseMessage.style.color = 'green';
+                          }, 1500);
+                        });
+                      });
+                    </script>
 				</div>
 								</div>
 				</div>
