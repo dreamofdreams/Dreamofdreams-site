@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Development flag: set to false in production
-    const DEBUG_MODE = true; 
+    const DEBUG_MODE = false; 
     const BLOG_CHARACTER_LIMIT = 950;
     const writingElement = document.querySelector('.parchment-writing');
     
