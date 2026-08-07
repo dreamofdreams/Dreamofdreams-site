@@ -675,18 +675,18 @@ and insights of Lorenzo D. Strother.								</div>
 				<div class="elementor-widget-container">
 									<div class="elementor-button-wrapper">
                     <!-- Newsletter Form Container -->
-                    <div id="newsletter-form-container">
+                    <div id="newsletter-form-container" style="max-width: 500px; width: 95%; margin: 0 auto; text-align: center;">
                       <form id="newsletter-form" action="https://docs.google.com/forms/d/e/1FAIpQLSeBrYhqogJqswh5uKweMn9iL_nA65Qa-LAlWXYAmznkMFfqTA/formResponse" method="POST" target="newsletter-submit-frame">
-                        <input type="email" name="entry.1335451090" placeholder="Email Address" required autocomplete="email" style="padding: 10px; width: 100%; margin-bottom: 10px;">
+                        <input type="email" name="entry.1335451090" placeholder="Email Address" required autocomplete="email" style="padding: 12px; width: 100%; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; background-color: #fff; color: #333;">
                         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none;">
-                        <p style="font-size: 0.8em; margin-bottom: 10px;">By subscribing, you agree to receive Dream of Dreams updates. You can unsubscribe at any time.</p>
+                        <p style="font-size: 0.85em; margin-bottom: 15px; color: #333; line-height: 1.4;">By subscribing, you agree to receive Dream of Dreams updates. You can unsubscribe at any time.</p>
                         <button id="newsletter-submit" type="submit" class="elementor-button elementor-size-sm">
                           <span class="elementor-button-content-wrapper">
                             <span class="elementor-button-text">JOIN THE LEGACY</span>
                           </span>
                         </button>
                       </form>
-                      <div id="newsletter-response" aria-live="polite" style="margin-top: 10px; font-weight: bold; display:none;"></div>
+                      <div id="newsletter-response" aria-live="polite" style="margin-top: 15px; font-weight: bold; display:none; color: #333;"></div>
                     </div>
                     <iframe name="newsletter-submit-frame" id="newsletter-submit-frame" style="display:none;" aria-hidden="true"></iframe>
                     <script>
@@ -707,7 +707,7 @@ and insights of Lorenzo D. Strother.								</div>
                           responseMessage.style.display = 'block';
                           responseMessage.textContent = 'Submitting...';
                           
-                          // After submission, assume success because we can't read cross-origin iframe response
+                          // After submission, assume success
                           setTimeout(function() {
                             form.style.display = 'none';
                             responseMessage.textContent = 'Thank you for joining the legacy.';
