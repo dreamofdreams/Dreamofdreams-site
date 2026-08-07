@@ -10,7 +10,7 @@
         .parchment-scene {
             position: relative;
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto;
         }
         .parchment-image {
@@ -28,7 +28,7 @@
             font-family: 'Great Vibes', cursive;
             font-weight: 400;
             font-style: italic;
-            font-size: clamp(14px, 0.95vw, 16px);
+            font-size: clamp(14px, 15px, 16px);
             line-height: 1.55;
             letter-spacing: 0.01em;
             word-spacing: 0.08em;
@@ -44,6 +44,11 @@
         .parchment-writing p {
             margin: 0;
             text-align: center;
+        }
+        @media (max-width: 700px) {
+            .parchment-writing {
+                font-size: 13px;
+            }
         }
         header, footer { text-align: center; padding: 20px; }
     </style>
