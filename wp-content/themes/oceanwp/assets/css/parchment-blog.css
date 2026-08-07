@@ -1,0 +1,60 @@
+:root {
+    --parchment-text-left: 27%;
+    --parchment-text-top: 45%;
+    --parchment-text-width: 52%;
+    --parchment-text-height: 33%;
+    --parchment-font-size: clamp(17px, 20px, 22px);
+    --parchment-line-height: 1.55;
+    --parchment-text-color: #1c120c;
+}
+
+body { background-color: #fdfaf0; }
+
+.parchment-scene {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.parchment-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.parchment-writing {
+    position: absolute;
+    left: var(--parchment-text-left);
+    top: var(--parchment-text-top);
+    width: var(--parchment-text-width);
+    height: var(--parchment-text-height);
+    color: var(--parchment-text-color);
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    font-style: italic;
+    font-size: var(--parchment-font-size);
+    line-height: var(--parchment-line-height);
+    letter-spacing: 0.01em;
+    word-spacing: 0.08em;
+    overflow-y: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transform: rotate(-0.5deg);
+    text-shadow: 0 0 0.4px rgba(0,0,0,0.8), 0 1px 1px rgba(255,255,255,0.15);
+}
+
+.parchment-writing p {
+    margin: 0;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .parchment-writing {
+        font-size: 16px;
+    }
+}
+header, footer { text-align: center; padding: 20px; }
