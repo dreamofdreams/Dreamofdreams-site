@@ -2,8 +2,8 @@
     --parchment-text-left: 27%;
     --parchment-text-top: 45%;
     --parchment-text-width: 52%;
-    --parchment-text-height: 33%;
-    --parchment-font-size: clamp(17px, 20px, 22px);
+    --parchment-text-height: 30%;
+    --parchment-font-size: clamp(16px, 18px, 20px);
     --parchment-line-height: 1.55;
     --parchment-text-color: #1c120c;
 }

@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const BLOG_CHARACTER_LIMIT = 1250;
+    // Development flag: set to false in production
+    const DEBUG_MODE = true; 
+    const BLOG_CHARACTER_LIMIT = 950;
     const writingElement = document.querySelector('.parchment-writing');
     
     if (writingElement) {
@@ -8,13 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Character count validation
         if (charCount > BLOG_CHARACTER_LIMIT) {
-            console.warn(`Blog post exceeds parchment capacity by ${charCount - BLOG_CHARACTER_LIMIT} characters. Maximum recommended length is ${BLOG_CHARACTER_LIMIT} characters.`);
+            console.error(`VALIDATION ERROR: Article exceeds parchment capacity by ${charCount - BLOG_CHARACTER_LIMIT} characters. Maximum recommended length is ${BLOG_CHARACTER_LIMIT} characters.`);
         }
         
         // Overflow detection
         if (writingElement.scrollHeight > writingElement.clientHeight) {
-            console.error("Blog post content overflows the parchment writing area!");
-            writingElement.style.border = "2px solid red"; // Visual warning for development
+            console.error(`VALIDATION ERROR: Article rendered height exceeds safe writing area by ${writingElement.scrollHeight - writingElement.clientHeight}px.`);
+            
+            if (DEBUG_MODE) {
+                writingElement.style.border = "2px solid red"; // Visual warning for development
+            }
         }
     }
 });
