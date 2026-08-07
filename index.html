@@ -114,6 +114,40 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     background:transparent;
     object-fit:contain;
 }
+                /* Social icons styling */
+                .icon-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    gap: 15px;
+                    margin-top: 20px;
+                }
+                .icon-link {
+                    text-decoration: none;
+                    display: inline-block;
+                }
+                .icon-box {
+                    width: 44px;
+                    height: 44px;
+                    background-color: #fff;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: transform 0.2s ease, background-color 0.2s ease;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                    cursor: pointer;
+                    position: relative;
+                    z-index: 10;
+                }
+                .icon-box:hover {
+                    transform: scale(1.1);
+                    background-color: #f8f8f8;
+                }
+                .icon-box img {
+                    width: 20px;
+                    height: auto;
+                    display: block;
+                }
                 /* Video trailer cover styles */
                 .elementor-element-39a3e84{
                     position:relative;
@@ -770,13 +804,13 @@ empowering through wisdom and purpose								</div>
 						<div class="elementor-element elementor-element-4fb1ff2 elementor-widget elementor-widget-html" data-id="4fb1ff2" data-element_type="widget" data-widget_type="html.default">
 				<div class="elementor-widget-container">
 					<div class="icon-wrapper">
-  <a href="javascript:void(0);" class="icon-link" onclick="if(navigator.share){navigator.share({title:'Dream of Dreams', text:'Discover Faith, Purpose, & Transformation.', url:window.location.href});}else{alert('Share not supported on this browser. Copy the URL to share!');}">
+  <a href="#" class="icon-link" title="Share this page" onclick="event.preventDefault(); const url=window.location.href; if(navigator.share){navigator.share({title:'Dream of Dreams',text:'Discover Faith, Purpose, & Transformation.',url:url}).catch(e=>{if(e.name!=='AbortError'){const t=document.createElement('textarea');t.value=url;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);alert('Link copied to clipboard!');}}); }else{const t=document.createElement('textarea');t.value=url;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);alert('Link copied to clipboard!');}">
     <div class="icon-box">
       <img src="wp-content/uploads/2026/04/Icon-7.webp" alt="Share">
     </div>
   </a>
 
-  <a href="https://www.instagram.com/dreamofdreamsofficial/" class="icon-link" target="_blank">
+  <a href="https://www.instagram.com/dreamofdreamsofficial/" class="icon-link" target="_blank" title="Follow on Instagram">
     <div class="icon-box">
       <img src="wp-content/uploads/2026/04/Icon-1-1.webp" alt="Instagram">
     </div>
