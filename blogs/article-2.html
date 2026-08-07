@@ -7,26 +7,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
         body { background-color: #fdfaf0; }
-        .parchment-content {
-            background-image: url('../blog_page_template.jpg');
-            background-size: 100% 100%;
-            padding: 80px 100px;
-            margin: 40px auto;
+        .parchment-scene {
+            position: relative;
+            width: 100%;
             max-width: 800px;
-            color: #2c201a;
-            font-family: 'Pinyon Script', cursive;
-            font-size: 24px;
-            line-height: 1.5;
-            box-shadow: none;
+            margin: 40px auto;
         }
-        .parchment-content h1 { color: #2c201a; border-bottom: none; }
+        .parchment-image {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .parchment-writing {
+            position: absolute;
+            left: 20%;
+            top: 44%;
+            width: 61%;
+            height: 36%;
+            color: #24170f;
+            font-family: 'Pinyon Script', cursive;
+            font-size: clamp(16px, 1.5vw, 24px);
+            line-height: 1.5;
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: column;
+        }
         header, footer { text-align: center; padding: 20px; }
     </style>
 </head>
 <body>
     <header><h1>Faith in the Face of Uncertainty</h1></header>
-    <main class="parchment-content">
-        <p>When I encountered my most significant obstacle, the foundational belief that kept me moving forward was the miracles He had already shown me and the things I had received through prayer. But it wasn’t just about those things; it was about the spiritual growth I experienced once those things were given. Giving up can be caused by a lack of knowledge, self-doubt, or other hurdles, while pivoting is simply realizing the goal is no longer where your heart is taking you. A time a "failure" steered me toward a better outcome occurred when I had to abandon an early narrative path I felt compelled to follow; by releasing it, I was able to write with a deeper, more spiritually resonant clarity that honored the story’s purpose far more than the original plot would have. When my faith wavers, I rely on community to pray with me and remind me that I am never alone—that I am, and will always be, loved unconditionally. I believe the unknown is more expected than planning because nothing in this world is perfect. You can only plan to the best of your capabilities and then trust in the One who holds the future.</p>
+    <main class="parchment-scene">
+        <img class="parchment-image" src="../blog_page_template.jpg" alt="Parchment">
+        <div class="parchment-writing">
+            <p>When I encountered my most significant obstacle, the foundational belief that kept me moving forward was the miracles He had already shown me and the things I had received through prayer. But it wasn’t just about those things; it was about the spiritual growth I experienced once those things were given. Giving up can be caused by a lack of knowledge, self-doubt, or other hurdles, while pivoting is simply realizing the goal is no longer where your heart is taking you. A time a "failure" steered me toward a better outcome occurred when I had to abandon an early narrative path I felt compelled to follow; by releasing it, I was able to write with a deeper, more spiritually resonant clarity that honored the story’s purpose far more than the original plot would have. When my faith wavers, I rely on community to pray with me and remind me that I am never alone—that I am, and will always be, loved unconditionally. I believe the unknown is more expected than planning because nothing in this world is perfect. You can only plan to the best of your capabilities and then trust in the One who holds the future.</p>
+        </div>
     </main>
     <footer><a href="../blogs.html">Back to Blog</a></footer>
 </body>
