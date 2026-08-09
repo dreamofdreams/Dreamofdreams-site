@@ -1,0 +1,3 @@
+fix: remove query parameters from asset references
+
+Removed ?ver=... query strings from all HTML, CSS, and JS file references to improve compatibility with static hosting environments.
