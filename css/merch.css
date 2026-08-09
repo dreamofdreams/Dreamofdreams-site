@@ -1,0 +1,7 @@
+body { font-family: sans-serif; background: #fdfaf6; color: #1a2a40; }
+header { text-align: center; padding: 20px; }
+#merch-browser { max-width: 600px; margin: auto; text-align: center; }
+#concept-image { width: 100%; height: auto; }
+.controls { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+button { padding: 10px 20px; cursor: pointer; }
+#loading-state { font-weight: bold; margin: 20px; color: #b8860b; }

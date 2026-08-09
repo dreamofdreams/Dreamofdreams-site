@@ -1,0 +1,28 @@
+[
+  {
+    "id": "hysco-0001",
+    "name": "Hysco Crest I",
+    "collection": "The Prophecy",
+    "status": "approved",
+    "conceptImageUrl": "images/hysco_seal_emblem.png",
+    "productionArtworkUrl": null,
+    "designElements": ["hysco-crest", "sword"],
+    "garments": ["tshirt", "hoodie", "jacket"],
+    "colorPalette": ["midnight-navy", "antique-gold"],
+    "likes": 0,
+    "createdAt": "2026-08-09"
+  },
+  {
+    "id": "hysco-0002",
+    "name": "Prophecy Ruby",
+    "collection": "The Prophecy",
+    "status": "approved",
+    "conceptImageUrl": "images/chest_of_destiny.png",
+    "productionArtworkUrl": null,
+    "designElements": ["ruby", "inscriptions"],
+    "garments": ["tshirt", "hoodie"],
+    "colorPalette": ["alabaster", "midnight-navy"],
+    "likes": 0,
+    "createdAt": "2026-08-09"
+  }
+]
