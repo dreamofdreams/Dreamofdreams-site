@@ -11,6 +11,31 @@ Project: Dreamofdreams-site
 - Review git diff before committing.
 - Ask before deleting important files.
 
+## Project Memory Maintenance Rules
+To ensure seamless transitions between development sessions, `GEMINI.md` serves as the persistent project memory and operating ledger.
+
+### Session Initialization Workflow
+Before beginning substantial work in any Gemini CLI session, the agent must:
+1. Read `GEMINI.md` to load the current project state, active goals, and roadmap.
+2. Inspect the current Git status and workspace files.
+3. Synthesize these inputs to establish the project context before modifying any files.
+
+### Post-Task Documentation Workflow
+After every meaningful project task, the agent must update `GEMINI.md` before completing the task. The file must remain a concise, accurate representation of the CURRENT project state. Rather than allowing contradictory or redundant history to accumulate, the agent must actively remove or revise outdated information.
+
+For each meaningful task, the agent must record/update:
+- **Completed Work:** What was finished and verified.
+- **Files Modified/Created:** Important files created or modified.
+- **Key Decisions:** Important architectural or implementation decisions.
+- **Implementation Status:** Current status of individual components.
+- **Roadmap & Tasks:** Update outstanding tasks and implementation sequence when appropriate.
+- **Known Issues:** Known issues or limitations.
+- **Resume Point:** The exact suspension/resume point so future sessions know exactly where to continue.
+
+### Security Boundaries
+- **Strict Credential Protection:** Never write passwords, tokens, API keys, secret values, or other credentials into `GEMINI.md`.
+- **Secret Vault Reference Policy:** Secret Manager or other vaults may be referenced by secret **NAME** only, never by their secret value.
+
 ## Project Purpose & Current Goals
 The **Dream of Dreams Website** is the official web platform for the novel *Dream of Dreams* by Lorenzo Strother. The site's purpose is to promote the book, share author insights via blogs, offer contact/press materials, and provide an interactive merchandising platform ("Hysco Merchandise Platform") themed around the book's elements (e.g., the crest, sword, chest of destiny).
 
