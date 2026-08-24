@@ -296,3 +296,9 @@ body {
     margin-left: 10px;
 }
 }
+/* Free Chapter 1 CTA - compact width */
+.elementor-element-free-chapter-hero .elementor-button,
+.elementor-element-free-chapter-featured .elementor-button {
+    padding-left: 20px;
+    padding-right: 20px;
+}
