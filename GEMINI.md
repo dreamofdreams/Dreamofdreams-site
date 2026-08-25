@@ -126,15 +126,23 @@ This is a static HTML/JS website, compiled from a WordPress export (utilizing th
    - Replaced old "Amazon" and "Barnes & Noble" placeholder buttons on `index.html`, `books.html`, and `books/index.html` with the new hierarchy widget.
    - Connected the "Kindle Pre-order" option to the verified Amazon Kindle ASIN link (`https://www.amazon.com/dp/B0HG9WGDMW`).
    - Mapped the Hero "Buy Now" CTA on `index.html` to smoothly scroll to the `#purchase-options` sales target container.
-   - Fully preserved the filename, rel, and tab behavior of the "READ CHAPTER 1 — FREE" PDF CTAs on all pages.
+     - Fully preserved the filename, rel, and tab behavior of the "READ CHAPTER 1 — FREE" PDF CTAs on all pages.
+   4. **Buy Book Navigation Link Correction:** Completed a comprehensive batch update of the 'Buy Book' list-item menu link and its mobile duplicate across all 18 HTML files in the workspace (36 instances in total) to point cleanly to the `#purchase-options` sales target with proper directory-depth relative paths.
+   5. **Authentic Wordmark Replacement & Mobile Navigation Fix:**
+      - Changed the homepage hero title to reference the cropped, authentic golden wordmark at `images/dream-of-dreams-wordmark.png` for a clean, zero-padding responsive display over the hero cover book video.
+      - Enhanced the wordmark sizing and vertical positioning in `wp-content/themes/oceanwp/style.css`. Substantially increased the displayed dimensions on mobile (spanning 90-95% screen width with `width: 100%` and `max-width: 100%`) and desktop (up to `max-width: 520px`). Shifted the title moderately upward on desktop (`margin-top: -55px`) and substantially upward on mobile (`margin-top: -95px`, shifting it an additional 65px upward) to eliminate excessive vertical whitespace while maintaining elegant spacing and balanced flow into the book-cover below.
+      - Diagnosed and fixed the mobile navigation "BUY BOOK" Same-Page Anchor Click issue in `/wp-content/themes/oceanwp/assets/js/theme.min.js?ver=4.1.0`. Intercepted current same-page anchor click events and applied smooth scroll animation programmatically while delaying the menu collapse by 150ms. This prevents the browser from aborting anchor scrolling when the parent menu instantly receives `display: none`.
+      - Reduced the displayed size of the upper-left transparent Publishing LLC logo globally by 15% (to `114px` on desktop, `95px` on mobile) and on the home page by 20% (to `215px` on desktop, `120px` on mobile) inside `wp-content/themes/oceanwp/style.css` to prevent visual competition with the main wordmark title.
+      - Repositioned the mobile/tablet hamburger dropdown in `wp-content/themes/oceanwp/style.css`. Set absolute positioning with `right: 0`, `left: auto`, and `width: 250px` on `.elementor-nav-menu--dropdown` relative to `.mobile-toggle` to anchor it elegantly beneath the upper-right hamburger toggle button, preventing it from appearing in the center of the page and covering the wordmark title.
+      - Fixed text contrast of inactive mobile dropdown menu links in `wp-content/themes/oceanwp/style.css`. Set inactive links to a highly readable warm ivory (`#fdfbf7` with `0.85` opacity), while preserving the active HOME page item (gold background, white text) and hover states exactly as they are.
 
----
+   ---
 
-## Current Implementation Status
+   ## Current Implementation Status
 - **General Pages:** Production-ready and fully styled.
 - **Sales Funnel:**
-  - **Phase 1 (Presentation Hierarchy):** 100% Completed. Clear layout, pricing structures, and external Kindle pre-order link deployed.
-  - **Phase 2 (Direct Checkout Checkout, Stripe, Apps Script, Webhooks):** 0% Completed (currently in planning).
+  - **Phase 1 (Presentation Hierarchy):** Implemented locally — pending visual review and approval.
+  - **Phase 2 (PayPal Business checkout, Apps Script verification, email delivery):** 0% Completed (currently in planning).
 - **Hysco Merchandise Platform:**
   - **Phase 1 (Frontend Foundation):** 100% Completed. Ready for local simulation, design testing, and frontend review.
   - **Phase 2 (Cloud Integration & Backend):** 0% Completed (currently in planning).
@@ -142,9 +150,10 @@ This is a static HTML/JS website, compiled from a WordPress export (utilizing th
 ---
 
 ## Important Decisions Made
-1. **Serverless Architecture for Backend:** To protect API keys and ensure scalability, all high-privilege operations (Stripe checkout sessions, Printful fulfillment orders, AI generation calls) must remain strictly server-side.
-2. **Security & Payment Validation:** No raw or arbitrary prompts will be passed to generative AI from the client-side to prevent prompt injection and resource abuse. In addition, payment verification must be performed via server-to-server secure webhooks prior to forwarding any orders to Printful.
-3. **No Direct Secret Exposure:** No API keys, passwords, or tokens are allowed in the repository or front-end assets.
+1. **PayPal Business & Apps Script Checkout Architecture:** Direct purchases of the Author's Early Access edition ($29.99) will be powered by PayPal Business as the default payment processor. Secure payment verification and automated digital fulfillment will be driven by a Google Workspace / Apps Script / Drive / Gmail serverless pipeline.
+2. **Serverless Architecture for Merchandise Backend:** To protect API keys and ensure scalability, high-privilege operations on the Merchandise Platform (Stripe checkout, Printful catalog, AI generator) will remain strictly server-side.
+3. **Security & Payment Validation:** No raw or arbitrary prompts will be passed to generative AI from the client-side to prevent prompt injection and resource abuse. In addition, payment verification must be performed via server-to-server secure webhooks prior to forwarding any orders to Printful.
+4. **No Direct Secret Exposure:** No API keys, passwords, or tokens are allowed in the repository or front-end assets.
 
 ---
 
@@ -181,20 +190,32 @@ This is a static HTML/JS website, compiled from a WordPress export (utilizing th
 ---
 
 ## Planned Implementation Sequence
-1. **Task 1: Frontend Styling Polish:** Align `/merch.html` aesthetics and CSS more closely with the OceanWP/Elementor theme styles used on the homepage.
-2. **Task 2: Serverless Backend Draft:** Scaffold a simple backend using FastAPI or Google Cloud Functions to handle authentication and proxying.
-3. **Task 3: Secret Manager Connection:** Validate that the backend securely accesses API credentials from the Google Cloud Secret Manager.
-4. **Task 4: AI Image Generation Pipeline:** Hook up the backend to Vertex AI Imagen or another generator, returning real URLs instead of mock placeholders.
-5. **Task 5: Printful & Stripe Endpoints:** Create fulfillment and checkout workflows.
+1. **Task 1: Visual Inspection & Approval:** Conduct local HTTP preview and inspection of the sales presentation hierarchy.
+2. **Task 2: Final Frontend Verification:** Run clean-up, final link audits, and responsive alignment checks.
+3. **Task 3: Commit & Push Approved Frontend:** Stage and push the approved sales-funnel UI changes to `origin main`.
+4. **Task 4: PayPal Business Integration:** Embed PayPal checkout buttons for the $29.99 Author's Early Access edition.
+5. **Task 5: Apps Script Automation:** Build the webhook listener and automated email pipeline to deliver the digital copy of the book upon successful payment.
+6. **Task 6: Update Privacy Policy & Terms:** Rewrite policy pages to precisely document the direct sale and fulfillment handling.
 
 ---
 
 ## Known Issues or Limitations
+- **Release Date Discrepancy (OPEN):** `press-kit.html` (Line 44) lists a static release date of `"August 2026"`, while the newly designed Paperback and Hardcover presentation entries advertise a release date of `"February 26, 2027"`. This remains an open issue requiring user confirmation before modifying `press-kit.html`.
 - **Mock Placeholders:** Currently, adding a new design generates a client-side placeholder image (`via.placeholder.com`) and does not produce real printable artwork.
 - **WordPress Hardcoding:** Some asset links inside the theme files (`wp-content/...`) and layout exports reference absolute or older domains (e.g. `lorenzostrother.cloudtrek360.com`). These are dynamically remapped or maintained as-is, but are a known legacy artifact of the WP static export.
 
 ---
 
 ## Work Suspension Ledger
-- **Point of Suspension:** Finished implementing the frontend sales presentation hierarchy across `index.html`, `books.html`, and `books/index.html`, removing dummy `#0` links in these sections, adding styling, and preserving free chapter downloads.
-- **Next Step:** Proceed with merchandise frontend styling alignment (`/merch.html`) or commence backend preparation for Phase 2 sales checkout flows.
+- **Point of Suspension:** Completed robust visual and navigation refinements on the Dream of Dreams website.
+- **Hamburger Menu Diagnosis & Correction:**
+  - *Status:* The previous vanilla-JS fallback was implemented but failed real-device visual testing because the mobile navigation menu remained completely collapsed at height 0.
+  - *Root Cause:* The static WP export lacks live backend configuration and REST variables, crashing Elementor Pro's menu script bundle during load. The compiled CSS hides the dropdown menu using `max-height: var(--menu-height)`. Since Elementor's JS is crashed, `--menu-height` is never set or calculated at runtime, keeping the menu collapsed.
+  - *Final Fix:* Implemented direct style-forcing on the dropdown menu in the vanilla-JS listener fallback (inside `/wp-content/themes/oceanwp/assets/js/theme.min.js?ver=4.1.0`) by applying `max-height`, `transform`, `opacity`, `visibility`, and `display` values natively with `!important` priority on active click. Added active menu overrides in `/wp-content/themes/oceanwp/style.css` as a secure backup. Tested on mock DOM, verified 100% working state transitions.
+- **Title Treatment Refinement & Bounding Box Crop:**
+  - *Issue:* The text-based "DREAM OF DREAMS / THE PROPHECY BEGINS" title treatment was placed in the author section (lower on the page) and was not visible at the top, and did not match the authentic branding.
+  - *Correction:* Removed the text title and subtitle entirely, and cleaned up obsolete CSS (`.book-main-title` and `.book-subtitle`). Programmatically cropped `logo_transparent.png` vertically (rows 420-968) and horizontally (columns 236-1337) to isolate the authentic golden wordmark lettering cleanly at `1101 x 548` resolution with zero transparent padding. Added this new `dream-of-dreams-wordmark.png` asset directly above the video cover inside the hero section, styled with clean responsive CSS rules.
+- **BUY BOOK Navigation Link Correction:**
+  - *Fix:* Executed a comprehensive batch update of the "Buy Book" list-item menu links (both desktop and mobile duplicates) across all 18 HTML files (36 instances in total) in the codebase. Corrected the `href` values so they point cleanly to the `#purchase-options` sales target container using proper relative paths adapted to the directory depth of each file (e.g. `#purchase-options` on the homepage, `index.html#purchase-options` for top-level pages, `../index.html#purchase-options` for 1-depth nested pages, and `../../index.html#purchase-options` for 2-depth nested pages).
+- **Next Step:** Obtain final visual and interactive approval on mobile/tablet from the user on the local HTTP preview server before staging, committing, or pushing.
+

@@ -296,9 +296,230 @@ body {
     margin-left: 10px;
 }
 }
-/* Free Chapter 1 CTA - compact width */
-.elementor-element-free-chapter-hero .elementor-button,
 .elementor-element-free-chapter-featured .elementor-button {
     padding-left: 20px;
     padding-right: 20px;
+}
+
+/* Sales Hierarchy presentation container */
+.sales-hierarchy-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.sales-option-card {
+    background-color: rgba(24, 24, 24, 0.85);
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    box-sizing: border-box;
+}
+
+.sales-option-card.active {
+    border-color: rgba(197, 160, 89, 0.4);
+}
+
+.sales-option-card.active:hover {
+    border-color: #C5A059;
+    transform: translateY(-2px);
+}
+
+.sales-option-card.early-access {
+    border-color: rgba(119, 90, 25, 0.5);
+    background-color: rgba(15, 12, 8, 0.9);
+}
+
+.sales-option-card.inactive {
+    opacity: 0.70;
+    background-color: rgba(15, 15, 15, 0.7);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.sales-option-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.sales-option-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFFFFF;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.sales-option-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #C5A059;
+}
+
+.sales-option-status {
+    font-size: 13px;
+    color: #C5A059;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.sales-option-subtext {
+    font-size: 12px;
+    color: #999999;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    line-height: 1.4;
+}
+
+.sales-option-card.early-access .sales-option-subtext {
+    color: #bfa36f;
+}
+
+.sales-option-button {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    margin-top: 12px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.sales-option-button.amazon-link {
+    background: linear-gradient(to right, #775A19 0%, #C5A059 100%);
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    border: none;
+}
+
+.sales-option-button.amazon-link:hover {
+    background: #000000 !important;
+    color: #C5A059 !important;
+    box-shadow: inset 0 0 0 1px #C5A059;
+}
+
+.sales-option-button.disabled {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #666666 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: not-allowed;
+}
+
+@media only screen and (max-width: 767px) {
+    .sales-hierarchy-container {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Homepage book cover title treatment using authentic wordmark image */
+.book-title-treatment {
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: -55px; /* Shift moderately upward to reduce excessive space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.book-wordmark-title {
+    width: 90%; /* Substantially larger on desktop/tablet */
+    max-width: 520px; /* Scales beautifully up to 520px */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 767px) {
+    .book-title-treatment {
+        margin-bottom: 15px; /* Balanced lead-in spacing to book video below */
+        margin-top: -95px; /* Shift moderately upward on mobile by an additional 65px */
+    }
+    .book-wordmark-title {
+        width: 100%; /* Spans 90-95% of available screen width on mobile */
+        max-width: 100%; /* No small pixel capping on mobile viewports */
+    }
+}
+
+/* Custom mobile menu dropdown overrides when active */
+.elementor-nav-menu--toggle .elementor-menu-toggle.elementor-active + .elementor-nav-menu__container {
+    max-height: 100vh !important;
+    transform: scaleY(1) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Header logo size adjustments (15-20% visual reduction) */
+.elementor-location-header img.wp-image-46 {
+    width: 114px !important; /* Reduces subpage desktop logo from 134px to 114px (15% reduction) */
+    height: auto !important;
+    max-width: 100% !important;
+    display: inline-block !important;
+}
+
+.home .elementor-location-header img.wp-image-46 {
+    width: 215px !important; /* Reduces homepage desktop logo from 268px to 215px (20% reduction) */
+    height: auto !important;
+}
+
+@media only screen and (max-width: 767px) {
+    .elementor-location-header img.wp-image-46 {
+        width: 95px !important; /* Elegant compact size on mobile screens */
+        height: auto !important;
+    }
+    .home .elementor-location-header img.wp-image-46 {
+        width: 120px !important; /* Compact size on home mobile screen */
+        height: auto !important;
+    }
+}
+
+/* Hamburger Dropdown Upper-Right Positioning Overrides (Desktop uses horizontal layout) */
+@media only screen and (max-width: 1024px) {
+    /* Set relative positioning on wrapper to establish boundary for absolute anchoring */
+    .mobile-toggle {
+        position: relative !important;
+    }
+    
+    /* Position the dropdown menu directly beneath the hamburger in the upper-right */
+    .mobile-toggle .elementor-nav-menu--dropdown.elementor-nav-menu__container {
+        position: absolute !important;
+        top: 100% !important; /* Align exactly below the toggle button line */
+        right: 0 !important; /* Anchor tightly to the right side of the header */
+        left: auto !important; /* Disable default Elementor left/stretching styles */
+        width: 250px !important; /* Standard explicit menu block width */
+        max-width: 90vw !important; /* Dynamic constraint for narrow viewports */
+        background-color: #1b1c17 !important; /* Solid dark theme background */
+        border: 1px solid #775a19 !important; /* Solid gold accent border */
+        border-radius: 4px !important;
+        box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.7) !important; /* Premium overlay shadow */
+        z-index: 99999 !important; /* Ensure it floats over other elements */
+    }
+    
+    /* Mobile Dropdown Menu Inactive Items Text Contrast (Warm Ivory) */
+    .mobile-toggle .elementor-nav-menu--dropdown a.elementor-item:not(.elementor-item-active):not(:hover):not(:focus) {
+        color: #fdfbf7 !important; /* Very subtle warm ivory */
+        opacity: 0.85 !important; /* Elegant subtle opacity for clear inactive state */
+    }
+    
+    /* Hover/Focus legibility reinforcement in mobile dropdown */
+    .mobile-toggle .elementor-nav-menu--dropdown a.elementor-item:hover,
+    .mobile-toggle .elementor-nav-menu--dropdown a.elementor-item:focus {
+        color: #ffffff !important; /* Pure white on hover/focus */
+        opacity: 1 !important;
+    }
 }
