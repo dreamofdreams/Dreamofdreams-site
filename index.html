@@ -741,7 +741,7 @@ Through epic journeys of love, sacrifice, adventure, and the timeless struggle b
 									<div class="elementor-button-wrapper">
                     <!-- Newsletter Form Container -->
                     <div id="newsletter-form-container" style="max-width: 500px; width: 95%; margin: 0 auto; text-align: center;">
-                      <form id="newsletter-form" action="https://script.google.com/macros/s/AKfycbzFmvFOStZx_IGS64-QW4gsSBYX2EEn8NFmKAIeWGl3Oq5TrPyvLzpej7K3kwriEMEnWA/exec" method="POST">
+                      <form id="newsletter-form" action="https://script.google.com/macros/s/AKfycbxr6VpftPTqd86d1ZRQyHhxSz1HUtvsxwCNvqzJexZWRMsbtLpq6TXYu8YMAIchm1eq1A/exec" method="POST">
                         <input type="hidden" name="form_type" value="newsletter">
                         <input type="email" name="email" placeholder="Email Address" required autocomplete="email" style="padding: 12px; width: 100%; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; background-color: #fff; color: #333;">
                         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none;">
@@ -775,6 +775,15 @@ Through epic journeys of love, sacrifice, adventure, and the timeless struggle b
                             return;
                           }
 
+                          // 1. Programmatically retrieve the Turnstile token and reject early if empty
+                          const token = (typeof turnstile !== 'undefined') ? turnstile.getResponse() : '';
+                          if (!token) {
+                            responseMessage.style.display = 'block';
+                            responseMessage.textContent = 'Please resolve the anti-bot challenge before submitting.';
+                            responseMessage.style.color = '#ff6b6b';
+                            return;
+                          }
+
                           submitButton.disabled = true;
                           submitButton.querySelector('.elementor-button-text').textContent = 'Sending...';
                           responseMessage.style.display = 'block';
@@ -782,10 +791,15 @@ Through epic journeys of love, sacrifice, adventure, and the timeless struggle b
                           responseMessage.style.color = '#fff';
 
                           const formData = new FormData(form);
+                          // 2. Explicitly force the token into the serialized parameter map
+                          formData.set('cf-turnstile-response', token);
 
-                          fetch('https://script.google.com/macros/s/AKfycbzFmvFOStZx_IGS64-QW4gsSBYX2EEn8NFmKAIeWGl3Oq5TrPyvLzpej7K3kwriEMEnWA/exec', {
+                          // 3. Serialize as URLSearchParams to enforce standard application/x-www-form-urlencoded format
+                          const searchParams = new URLSearchParams(formData);
+
+                          fetch('https://script.google.com/macros/s/AKfycbxr6VpftPTqd86d1ZRQyHhxSz1HUtvsxwCNvqzJexZWRMsbtLpq6TXYu8YMAIchm1eq1A/exec', {
                             method: 'POST',
-                            body: formData
+                            body: searchParams
                           })
                           .then(response => {
                             if (response.ok) {
