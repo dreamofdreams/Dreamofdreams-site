@@ -291,15 +291,28 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
+    // 1. Programmatically retrieve the Turnstile token and reject early if empty
+    const token = (typeof turnstile !== 'undefined') ? turnstile.getResponse() : '';
+    if (!token) {
+      responseMessage.textContent = 'Please resolve the anti-bot challenge before submitting.';
+      responseMessage.style.color = 'red';
+      return;
+    }
+
     submitButton.disabled = true;
     submitButton.querySelector('.elementor-button-text').textContent = 'Sending...';
     responseMessage.textContent = '';
 
     const formData = new FormData(form);
+    // 2. Explicitly force the token into the serialized parameter map
+    formData.set('cf-turnstile-response', token);
+
+    // 3. Serialize as URLSearchParams to enforce standard application/x-www-form-urlencoded format
+    const searchParams = new URLSearchParams(formData);
 
     fetch('https://script.google.com/macros/s/AKfycbzFmvFOStZx_IGS64-QW4gsSBYX2EEn8NFmKAIeWGl3Oq5TrPyvLzpej7K3kwriEMEnWA/exec', {
       method: 'POST',
-      body: formData
+      body: searchParams
     })
     .then(response => {
       if (response.ok) {
