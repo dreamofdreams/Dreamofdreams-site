@@ -252,7 +252,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 					<textarea class="elementor-field-textual elementor-field  elementor-size-md" name="message" id="form-field-message" rows="4" placeholder="Message" required="required"></textarea>				</div>
         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="contact-honeypot">
         <div class="elementor-field-group elementor-column elementor-col-100" style="margin-bottom: 15px;">
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAEc2EhJko3l9KSO5" data-action="contact" data-theme="dark"></div>
+          <div id="contact-turnstile-container"></div>
         </div>
 								<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
 					<button id="submit-button" class="elementor-button elementor-size-md" type="submit">
@@ -279,6 +279,36 @@ document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('contact-form');
   const submitButton = form.querySelector('button[type="submit"]');
   const responseMessage = document.getElementById('response-message');
+  let contactWidgetId = null;
+  let attempts = 0;
+  const maxAttempts = 50; // Polling up to 5 seconds (50 * 100ms)
+
+  const initTurnstile = () => {
+    if (typeof turnstile !== 'undefined' && document.getElementById('contact-turnstile-container')) {
+      if (contactWidgetId === null) {
+        contactWidgetId = turnstile.render('#contact-turnstile-container', {
+          sitekey: '0x4AAAAAAEc2EhJko3l9KSO5',
+          action: 'contact',
+          theme: 'dark'
+        });
+      }
+      return true;
+    }
+    return false;
+  };
+
+  // Safe polling with bounded retries
+  if (!initTurnstile()) {
+    const interval = setInterval(() => {
+      attempts++;
+      if (initTurnstile() || attempts >= maxAttempts) {
+        clearInterval(interval);
+        if (contactWidgetId === null && attempts >= maxAttempts) {
+          console.error('Turnstile initialization failed: Polling timeout.');
+        }
+      }
+    }, 100);
+  }
 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -288,11 +318,14 @@ document.addEventListener('DOMContentLoaded', function() {
       form.reset();
       responseMessage.textContent = 'Thank you. Your message has been sent.';
       responseMessage.style.color = 'green';
+      if (typeof turnstile !== 'undefined' && contactWidgetId !== null) {
+        turnstile.reset(contactWidgetId);
+      }
       return;
     }
 
     // 1. Programmatically retrieve the Turnstile token and reject early if empty
-    const token = (typeof turnstile !== 'undefined') ? turnstile.getResponse() : '';
+    const token = (contactWidgetId !== null && typeof turnstile !== 'undefined') ? turnstile.getResponse(contactWidgetId) : '';
     if (!token) {
       responseMessage.textContent = 'Please resolve the anti-bot challenge before submitting.';
       responseMessage.style.color = 'red';
@@ -326,8 +359,8 @@ document.addEventListener('DOMContentLoaded', function() {
         form.reset();
         responseMessage.textContent = 'Thank you. Your message has been sent.';
         responseMessage.style.color = 'green';
-        if (typeof turnstile !== 'undefined') {
-          turnstile.reset();
+        if (typeof turnstile !== 'undefined' && contactWidgetId !== null) {
+          turnstile.reset(contactWidgetId);
         }
       } else {
         const errorType = data ? data.message : 'SYSTEM_ERROR';
@@ -343,8 +376,8 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(error => {
       responseMessage.textContent = error.message || 'We couldn\'t send your message. Please try again.';
       responseMessage.style.color = 'red';
-      if (typeof turnstile !== 'undefined') {
-        turnstile.reset();
+      if (typeof turnstile !== 'undefined' && contactWidgetId !== null) {
+        turnstile.reset(contactWidgetId);
       }
     })
     .finally(() => {
