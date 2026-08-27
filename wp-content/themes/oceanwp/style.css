@@ -523,3 +523,113 @@ body {
         opacity: 1 !important;
     }
 }
+
+/* ==========================================================================
+   Books Page CTA Buttons Overrides (Centering & Vertical Stacking)
+   ========================================================================== */
+
+/* Stack the READ CHAPTER 1 and Amazon buttons and center them horizontally with nice spacing */
+.elementor-element.elementor-element-free-chapter-books,
+.elementor-element.elementor-element-c0771c0 {
+    display: block !important;
+    width: -moz-fit-content !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin: 15px auto !important; /* Center horizontally, add elegant top/bottom gap */
+    float: none !important;
+    text-align: center !important;
+}
+
+/* Ensure their inner button wrappers are centered */
+.elementor-element.elementor-element-free-chapter-books .elementor-button-wrapper,
+.elementor-element.elementor-element-c0771c0 .elementor-button-wrapper {
+    text-align: center !important;
+}
+
+/* ==========================================================================
+   Homepage Hero Title/Logo Centering - Full Width Structural Row
+   ========================================================================== */
+
+/* Centered structural container holding the golden title wordmark in normal document flow */
+.homepage-main-title-container {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-top: 15px !important; /* Positive margin for elegant vertical spacing below navigation */
+    margin-bottom: 10px !important; /* Positive margin for consistent breathing room above the content below */
+}
+
+/* Clean Grid-group container structurally linking the title and divider in normal document flow */
+.dream-title-group {
+    display: grid !important;
+    justify-items: center !important;
+    align-items: start !important;
+    width: 100% !important;
+    max-width: 520px !important; /* Preserves approved title size constraint */
+    margin: 0 auto !important; /* Centered in normal flow */
+}
+
+.book-wordmark-title {
+    grid-row: 1 !important;
+    grid-column: 1 !important;
+    align-self: start !important;
+    width: 90% !important;
+    max-width: 520px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 !important;
+}
+
+@media only screen and (max-width: 767px) {
+    .homepage-main-title-container {
+        margin-top: 10px !important; /* Balanced responsive gap on mobile below navigation */
+        margin-bottom: 8px !important; /* Balanced responsive gap on mobile above hero content */
+    }
+    .book-wordmark-title {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* Spacing and breathing room for the companion rotating book cover video */
+.elementor-element.elementor-element-5def906 .hero-book {
+    margin-top: 0 !important; /* Removed any absolute positioning spacing since flow is normal */
+}
+
+@media only screen and (max-width: 767px) {
+    .elementor-element.elementor-element-5def906 .hero-book {
+        margin-top: 0 !important;
+    }
+}
+
+/* Correct the excessive vertical gap source directly on the hero section below the title */
+.elementor-element.elementor-element-5def906 {
+    margin-top: 0 !important;
+}
+
+/* Decorative gold PNG divider inside the same grid cell of the group container */
+.book-wordmark-divider {
+    grid-row: 1 !important;
+    grid-column: 1 !important;
+    align-self: start !important;
+    display: block !important;
+    width: 60% !important; /* Width is exactly 60% of the title's width as requested */
+    max-width: 312px !important; /* Scaled proportionally relative to the 520px title */
+    height: auto !important; /* Strictly preserves original PNG aspect ratio and transparent detail */
+    object-fit: contain !important;
+    /* Precise clamp top-margin that scales proportionally on mobile (13vw) and locks at 77px on desktop to perfectly match the constant title size, eliminating spacing drift! */
+    margin: clamp(45px, 13vw, 77px) auto 0 auto !important; 
+}
+
+@media only screen and (max-width: 767px) {
+    .book-wordmark-divider {
+        width: 65% !important; /* Sensible responsive width on mobile */
+        max-width: 260px !important;
+    }
+}
+
+
+
+
