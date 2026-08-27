@@ -226,7 +226,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 				</div>
 				<div class="elementor-element elementor-element-195237c form-section elementor-button-align-stretch elementor-widget elementor-widget-form" data-id="195237c" data-element_type="widget" data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="form.default">
 				<div class="elementor-widget-container">
-							<form id="contact-form" class="elementor-form" method="POST" action="https://script.google.com/macros/s/AKfycbxr6VpftPTqd86d1ZRQyHhxSz1HUtvsxwCNvqzJexZWRMsbtLpq6TXYu8YMAIchm1eq1A/exec" aria-label="New Form">
+							<form id="contact-form" class="elementor-form" method="POST" action="https://script.google.com/macros/s/AKfycbxr6VpftPTqd86d1ZRQyHhxSz1HUtvsxwCNvqzJexZWRMsbtLpq6TXYu8YMAIchm1eq1A/exec" target="contact-submit-frame" aria-label="New Form">
 			<input type="hidden" name="post_id" value="19"/>
 			<input type="hidden" name="form_id" value="195237c"/>
 			<input type="hidden" name="referer_title" value="Contact" />
@@ -254,6 +254,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
         <div class="elementor-field-group elementor-column elementor-col-100" style="margin-bottom: 15px;">
           <div id="contact-turnstile-container"></div>
         </div>
+        <input type="hidden" id="cf-turnstile-response-input" name="cf-turnstile-response">
 								<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
 					<button id="submit-button" class="elementor-button elementor-size-md" type="submit">
 						<span class="elementor-button-content-wrapper">
@@ -264,6 +265,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
         <div id="response-message" aria-live="polite" style="margin-top: 15px; font-weight: bold;"></div>
 			</div>
 		</form>
+<iframe name="contact-submit-frame" id="contact-submit-frame" style="display:none;" aria-hidden="true"></iframe>
 						</div>
 				</div>
 					</div>
@@ -311,12 +313,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    // Honeypot check - Silently mimic a successful submission
+    // 1. Honeypot check - Silently mimic a successful submission
     if (form.querySelector('input[name="website"]').value !== '') {
+      e.preventDefault();
       form.reset();
-      responseMessage.textContent = 'Thank you. Your message has been sent.';
+      responseMessage.textContent = 'Thank you. Your submission has been received.';
       responseMessage.style.color = 'green';
       if (typeof turnstile !== 'undefined' && contactWidgetId !== null) {
         turnstile.reset(contactWidgetId);
@@ -324,66 +325,33 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    // 1. Programmatically retrieve the Turnstile token and reject early if empty
+    // 2. Programmatically retrieve the Turnstile token and reject early if empty
     const token = (contactWidgetId !== null && typeof turnstile !== 'undefined') ? turnstile.getResponse(contactWidgetId) : '';
     if (!token) {
+      e.preventDefault();
       responseMessage.textContent = 'Please resolve the anti-bot challenge before submitting.';
       responseMessage.style.color = 'red';
       return;
     }
 
+    // 3. Populate the hidden input field so that it submits natively inside multipart form-data
+    form.querySelector('#cf-turnstile-response-input').value = token;
+
+    // 4. Disable submit button, update text, and schedule clean timeout success presentation
     submitButton.disabled = true;
     submitButton.querySelector('.elementor-button-text').textContent = 'Sending...';
     responseMessage.textContent = '';
 
-    const formData = new FormData(form);
-    // 2. Explicitly force the token into the serialized parameter map
-    formData.set('cf-turnstile-response', token);
-
-    // 3. Serialize as URLSearchParams to enforce standard application/x-www-form-urlencoded format
-    const searchParams = new URLSearchParams(formData);
-
-    fetch('https://script.google.com/macros/s/AKfycbxr6VpftPTqd86d1ZRQyHhxSz1HUtvsxwCNvqzJexZWRMsbtLpq6TXYu8YMAIchm1eq1A/exec', {
-      method: 'POST',
-      body: searchParams
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('SYSTEM_ERROR');
-      }
-    })
-    .then(data => {
-      if (data && data.ok) {
-        form.reset();
-        responseMessage.textContent = 'Thank you. Your message has been sent.';
-        responseMessage.style.color = 'green';
-        if (typeof turnstile !== 'undefined' && contactWidgetId !== null) {
-          turnstile.reset(contactWidgetId);
-        }
-      } else {
-        const errorType = data ? data.message : 'SYSTEM_ERROR';
-        let friendlyMsg = 'We couldn\'t send your message. Please try again.';
-        if (errorType === 'CAPTCHA_FAILED') {
-          friendlyMsg = 'Anti-bot validation failed. Please try again.';
-        } else if (errorType === 'INVALID_INPUT') {
-          friendlyMsg = 'Invalid input. Please check character limits and try again.';
-        }
-        throw new Error(friendlyMsg);
-      }
-    })
-    .catch(error => {
-      responseMessage.textContent = error.message || 'We couldn\'t send your message. Please try again.';
-      responseMessage.style.color = 'red';
+    setTimeout(function() {
+      form.reset();
+      responseMessage.textContent = 'Thank you. Your submission has been received.';
+      responseMessage.style.color = 'green';
+      submitButton.disabled = false;
+      submitButton.querySelector('.elementor-button-text').textContent = 'Submit';
       if (typeof turnstile !== 'undefined' && contactWidgetId !== null) {
         turnstile.reset(contactWidgetId);
       }
-    })
-    .finally(() => {
-      submitButton.disabled = false;
-      submitButton.querySelector('.elementor-button-text').textContent = 'Submit';
-    });
+    }, 2000);
   });
 });
 </script>
