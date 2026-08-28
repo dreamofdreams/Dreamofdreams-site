@@ -55,6 +55,14 @@ body {
   background-clip: text;
   color: transparent;
   font-size: 67px !important;
+  line-height: 1.35 !important;
+  padding-bottom: 0.15em !important;
+  overflow: visible !important;
+}
+.elementor-element-ddac31f,
+.elementor-element-ddac31f .elementor-widget-container {
+  overflow: visible !important;
+  height: auto !important;
 }
 .amazon-btn .elementor-button {
     position: relative;
