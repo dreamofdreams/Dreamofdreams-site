@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Dream of Dreams community hub for readers and creators.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://dod-social-auth-gateway-190c9rby.uc.gateway.dev; img-src 'self' https: data:; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://dod-social-auth-gateway-190c9rby.uc.gateway.dev; frame-ancestors 'none'; upgrade-insecure-requests">
+    <title>Community | Dream of Dreams</title>
+    <link rel="stylesheet" href="community.css">
+    <script src="community.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <a class="brand" href="../index.html" aria-label="Dream of Dreams home">
+            <img src="../dream_of_dreams_logo.png" alt="" width="64" height="64">
+            <span>Dream of Dreams</span>
+        </a>
+        <a class="home-link" href="../index.html">Return home</a>
+    </header>
+
+    <main id="main-content">
+        <section class="hero" aria-labelledby="community-title">
+            <p class="eyebrow">Readers &amp; Creators</p>
+            <h1 id="community-title">Enter the Dream of Dreams community</h1>
+            <p class="hero-copy">Connect with fellow dreamers, discover book extras, and follow the journey through Hysco.</p>
+        </section>
+
+        <div id="auth-status" class="status" role="status" aria-live="polite">Checking your community session...</div>
+
+        <section id="loading-view" class="panel auth-panel" aria-labelledby="loading-title">
+            <div class="spinner" aria-hidden="true"></div>
+            <h2 id="loading-title">Opening the community</h2>
+            <p>Please wait while we check your session.</p>
+        </section>
+
+        <section id="signed-out-view" class="panel auth-panel" aria-labelledby="signed-out-title" hidden>
+            <h2 id="signed-out-title">Join with TikTok</h2>
+            <p>Use TikTok Login Kit to create your community session. Dream of Dreams receives only your basic TikTok profile information: your display name and avatar.</p>
+            <a id="tiktok-login" class="primary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/tiktok/login">Continue with TikTok</a>
+            <p class="privacy-note">We never place your TikTok access token in this page or browser storage.</p>
+            <p class="legal-links">
+                By continuing, you acknowledge our
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                and
+                <a href="../terms-of-service.html">Terms of Service</a>.
+            </p>
+        </section>
+
+        <section id="error-view" class="panel auth-panel" aria-labelledby="error-title" hidden>
+            <h2 id="error-title">We could not open the community</h2>
+            <p id="error-message">The community service is temporarily unavailable. Please try again.</p>
+            <button id="retry-button" class="secondary-button" type="button">Try again</button>
+        </section>
+
+        <section id="member-view" aria-labelledby="welcome-title" hidden>
+            <div class="panel member-card">
+                <img id="member-avatar" class="avatar" src="../dream_of_dreams_logo.png" alt="" width="112" height="112">
+                <div>
+                    <p class="eyebrow">Community member</p>
+                    <h2 id="welcome-title">Welcome, <span id="member-name">Dreamer</span></h2>
+                    <p>Your gateway to reader updates, creator resources, and the world of Hysco.</p>
+                </div>
+                <button id="logout-button" class="secondary-button" type="button">Log out</button>
+            </div>
+
+            <section class="resources" aria-labelledby="resources-title">
+                <div class="section-heading">
+                    <p class="eyebrow">Explore</p>
+                    <h2 id="resources-title">Community resources</h2>
+                </div>
+
+                <div class="resource-grid">
+                    <article class="resource-card">
+                        <h3>Read the opening chapter</h3>
+                        <p>Begin the journey with a downloadable sample from <cite>Dream of Dreams</cite>.</p>
+                        <a href="../dream-of-dreams-chapter-1-sample.pdf">Open chapter one</a>
+                    </article>
+
+                    <article class="resource-card">
+                        <h3>Discover the books</h3>
+                        <p>Explore the story, characters, and available Dream of Dreams editions.</p>
+                        <a href="../books.html">Visit the books page</a>
+                    </article>
+
+                    <article class="resource-card">
+                        <h3>Reader and creator updates</h3>
+                        <p>Follow news, behind-the-scenes notes, and updates from the Dream of Dreams universe.</p>
+                        <a href="../blogs.html">Read the latest posts</a>
+                    </article>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="copyright-year">2026</span> Dream of Dreams LLC</p>
+        <nav aria-label="Legal">
+            <a href="../privacy-policy.html">Privacy Policy</a>
+            <a href="../terms-of-service.html">Terms of Service</a>
+            <a href="../contact.html">Contact</a>
+        </nav>
+    </footer>
+
+    <noscript>
+        <p class="noscript-message">JavaScript is required to check your community session. You can still visit the <a href="../index.html">Dream of Dreams homepage</a>.</p>
+    </noscript>
+</body>
+</html>
