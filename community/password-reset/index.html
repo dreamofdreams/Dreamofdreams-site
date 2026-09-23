@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Choose a new password for your Dream of Dreams community account.">
+    <meta name="referrer" content="no-referrer">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://dod-social-auth-gateway-190c9rby.uc.gateway.dev; img-src 'self' data:; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+    <title>Reset your password | Dream of Dreams</title>
+    <link rel="stylesheet" href="../community.css">
+    <link rel="stylesheet" href="password-reset.css">
+    <script src="password-reset.js" defer></script>
+    <script src="password-reset-bootstrap.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <a class="brand" href="../../index.html" aria-label="Dream of Dreams home">
+            <img src="../../dream_of_dreams_logo.png" alt="" width="64" height="64">
+            <span>Dream of Dreams</span>
+        </a>
+        <a class="home-link" href="../index.html">Community home</a>
+    </header>
+
+    <main id="main-content">
+        <section class="hero reset-hero" aria-labelledby="reset-page-title">
+            <p class="eyebrow">Community account</p>
+            <h1 id="reset-page-title">Reset your password</h1>
+            <p class="hero-copy">Choose a new password for your Dream of Dreams community account.</p>
+        </section>
+
+        <div id="status-message" class="status" role="status" aria-live="polite">Opening your password reset link.</div>
+
+        <section id="form-view" class="panel reset-panel" aria-labelledby="form-title" hidden>
+            <h2 id="form-title">Choose a new password</h2>
+            <p id="password-guidance" class="reset-guidance">Use 12 to 128 characters. A longer, unique passphrase is recommended.</p>
+
+            <form id="reset-form" class="reset-form" method="post" action="">
+                <div class="form-field">
+                    <label for="new-password">New password</label>
+                    <input id="new-password" name="new-password" type="password" autocomplete="new-password" required aria-describedby="password-guidance error-message">
+                </div>
+
+                <div class="form-field">
+                    <label for="confirm-password">Confirm new password</label>
+                    <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required aria-describedby="error-message">
+                </div>
+
+                <p id="error-message" class="form-error" role="alert" aria-live="assertive"></p>
+                <button id="submit-button" class="primary-button reset-submit" type="submit">Reset password</button>
+            </form>
+        </section>
+
+        <section id="invalid-view" class="panel reset-panel terminal-view" aria-labelledby="invalid-title" hidden>
+            <p class="terminal-mark" aria-hidden="true">!</p>
+            <h2 id="invalid-title">This link cannot be used</h2>
+            <p>This password reset link is invalid or has expired. Request a new link to try again.</p>
+            <a class="secondary-button" href="../index.html">Return to the community</a>
+        </section>
+
+        <section id="success-view" class="panel reset-panel terminal-view" aria-labelledby="success-title" hidden>
+            <p class="terminal-mark terminal-mark-success" aria-hidden="true">&#10003;</p>
+            <h2 id="success-title">Password reset complete</h2>
+            <p>Your password has been updated. You can now return to the community and log in.</p>
+            <a class="primary-button" href="../index.html">Continue to the community</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Dream of Dreams LLC</p>
+        <nav aria-label="Legal">
+            <a href="../../privacy-policy.html">Privacy Policy</a>
+            <a href="../../terms-of-service.html">Terms of Service</a>
+            <a href="../../contact.html">Contact</a>
+        </nav>
+    </footer>
+
+    <noscript>
+        <p class="noscript-message">JavaScript is required to reset your password. Return to the <a href="../index.html">Dream of Dreams community</a>.</p>
+    </noscript>
+</body>
+</html>
