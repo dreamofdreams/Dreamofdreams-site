@@ -8,7 +8,9 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://dod-social-auth-gateway-190c9rby.uc.gateway.dev; img-src 'self' https: data:; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://dod-social-auth-gateway-190c9rby.uc.gateway.dev; frame-ancestors 'none'; upgrade-insecure-requests">
     <title>Community | Dream of Dreams</title>
     <link rel="stylesheet" href="community.css">
+    <link rel="stylesheet" href="community-email-auth.css">
     <script src="community.js" defer></script>
+    <script src="community-email-auth.js" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -36,12 +38,55 @@
             <p>Please wait while we check your session.</p>
         </section>
 
-        <section id="signed-out-view" class="panel auth-panel" aria-labelledby="signed-out-title" hidden>
-            <h2 id="signed-out-title">Join with TikTok</h2>
-            <p>Use TikTok Login Kit to create your community session. Dream of Dreams receives only your basic TikTok profile information: your display name and avatar.</p>
-            <a id="tiktok-login" class="primary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/tiktok/login">Continue with TikTok</a>
-            <p class="privacy-note">We never place your TikTok access token in this page or browser storage.</p>
-            <p class="legal-links">
+        <section id="signed-out-view" class="auth-options" aria-labelledby="signed-out-title" hidden>
+            <div class="section-heading auth-heading">
+                <p class="eyebrow">Choose how to continue</p>
+                <h2 id="signed-out-title">Join or log in</h2>
+            </div>
+
+            <div class="auth-grid">
+                <section class="panel auth-panel email-auth-panel" aria-labelledby="email-signup-title">
+                    <h3 id="email-signup-title">Create an account</h3>
+                    <p>Join with your email address and a secure password.</p>
+                    <form id="email-signup-form" class="email-auth-form">
+                        <label for="signup-display-name">Display name</label>
+                        <input id="signup-display-name" name="displayName" type="text" autocomplete="name" minlength="1" maxlength="100" required>
+                        <label for="signup-email">Email address</label>
+                        <input id="signup-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+                        <label for="signup-password">Password</label>
+                        <input id="signup-password" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="128" aria-describedby="signup-password-help" required>
+                        <p id="signup-password-help" class="field-help">Use 12–128 characters.</p>
+                        <button id="email-signup-button" class="primary-button" type="submit">Create account</button>
+                        <p id="email-signup-message" class="form-message" role="status" aria-live="polite"></p>
+                    </form>
+                </section>
+
+                <section class="panel auth-panel email-auth-panel" aria-labelledby="email-login-title">
+                    <h3 id="email-login-title">Log in with email</h3>
+                    <p>Welcome back. Enter your community credentials.</p>
+                    <form id="email-login-form" class="email-auth-form">
+                        <label for="login-email">Email address</label>
+                        <input id="login-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+                        <label for="login-password">Password</label>
+                        <input id="login-password" name="password" type="password" autocomplete="current-password" minlength="12" maxlength="128" required>
+                        <button id="email-login-button" class="primary-button" type="submit">Log in</button>
+                        <p id="email-login-message" class="form-message" role="status" aria-live="polite"></p>
+                    </form>
+                    <p class="password-reset-link"><a href="password-reset/">Forgot your password?</a></p>
+                </section>
+            </div>
+
+            <section class="panel auth-panel social-auth-panel" aria-labelledby="tiktok-title">
+                <h3 id="tiktok-title">Continue with TikTok</h3>
+                <p>Join to create a new community account, or log in if you have already joined. Dream of Dreams receives only your TikTok display name and avatar.</p>
+                <div class="auth-actions" aria-label="TikTok community authentication">
+                    <a id="tiktok-signup" class="primary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/tiktok/signup">Join with TikTok</a>
+                    <a id="tiktok-login" class="secondary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/tiktok/login">Log in with TikTok</a>
+                </div>
+                <p class="privacy-note">We never place your TikTok access token in this page or browser storage.</p>
+            </section>
+
+            <p class="legal-links auth-legal-links">
                 By continuing, you acknowledge our
                 <a href="../privacy-policy.html">Privacy Policy</a>
                 and

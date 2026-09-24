@@ -1,0 +1,117 @@
+.auth-options {
+    width: min(62rem, 100%);
+    margin-inline: auto;
+}
+
+.auth-heading,
+.auth-legal-links {
+    text-align: center;
+}
+
+.auth-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.email-auth-panel {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin: 0;
+    text-align: left;
+}
+
+.email-auth-panel > h3,
+.email-auth-panel > p,
+.password-reset-link {
+    text-align: center;
+}
+
+.email-auth-form {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: auto;
+}
+
+.email-auth-form label {
+    color: var(--ink);
+    font-size: 0.92rem;
+    font-weight: 800;
+}
+
+.email-auth-form input {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.7rem 0.85rem;
+    color: var(--ink);
+    background: rgba(4, 8, 19, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 0.65rem;
+    font: inherit;
+}
+
+.email-auth-form input:hover {
+    border-color: rgba(224, 186, 92, 0.7);
+}
+
+.email-auth-form input:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+    border-color: transparent;
+}
+
+.email-auth-form input:user-invalid {
+    border-color: var(--danger);
+}
+
+.email-auth-form .primary-button {
+    width: 100%;
+    margin-top: 0.75rem;
+}
+
+.primary-button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+    transform: none;
+}
+
+.field-help,
+.form-message {
+    min-height: 1.5rem;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+}
+
+.form-message {
+    color: var(--ink);
+    text-align: center;
+}
+
+.password-reset-link {
+    margin: 0.5rem 0 0;
+    font-size: 0.92rem;
+}
+
+.social-auth-panel {
+    margin-top: 1rem;
+}
+
+.auth-legal-links {
+    margin: 1.25rem auto 0;
+    color: var(--muted);
+}
+
+@media (max-width: 48rem) {
+    .auth-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (forced-colors: active) {
+    .email-auth-form input {
+        border: 1px solid FieldText;
+    }
+}

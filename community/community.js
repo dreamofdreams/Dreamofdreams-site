@@ -29,6 +29,7 @@
     const DEFAULT_API_ORIGIN = 'https://dod-social-auth-gateway-190c9rby.uc.gateway.dev';
     const FALLBACK_AVATAR_PATH = '../dream_of_dreams_logo.png';
     const REQUEST_TIMEOUT_MS = 10000;
+    const MEMBER_PROVIDERS = new Set(['tiktok', 'google', 'email']);
 
     class CommunityServiceError extends Error {
         constructor(code) {
@@ -71,7 +72,7 @@
 
     function normalizeMemberPayload(payload) {
         if (!payload || payload.authenticated !== true || !payload.user ||
-            payload.user.provider !== 'tiktok') {
+            !MEMBER_PROVIDERS.has(payload.user.provider)) {
             throw new CommunityServiceError('INVALID_PROFILE');
         }
 
@@ -85,7 +86,7 @@
         }
 
         return {
-            provider: 'tiktok',
+            provider: payload.user.provider,
             displayName,
             avatarUrl: normalizeAvatarUrl(payload.user.avatarUrl)
         };
@@ -217,7 +218,7 @@
             showOnly('member');
             view.memberName.textContent = user.displayName;
             view.memberAvatar.src = user.avatarUrl || FALLBACK_AVATAR_PATH;
-            view.memberAvatar.alt = user.avatarUrl ? `${user.displayName}'s TikTok avatar` : '';
+            view.memberAvatar.alt = user.avatarUrl ? `${user.displayName}'s community avatar` : '';
             view.memberAvatar.referrerPolicy = 'no-referrer';
             view.status.textContent = `Signed in as ${user.displayName}.`;
         }
