@@ -29,7 +29,7 @@
     const DEFAULT_API_ORIGIN = 'https://dod-social-auth-gateway-190c9rby.uc.gateway.dev';
     const FALLBACK_AVATAR_PATH = '../dream_of_dreams_logo.png';
     const REQUEST_TIMEOUT_MS = 10000;
-    const MEMBER_PROVIDERS = new Set(['tiktok', 'google', 'facebook', 'email']);
+    const MEMBER_PROVIDERS = new Set(['tiktok', 'google', 'email']);
 
     class CommunityServiceError extends Error {
         constructor(code) {
