@@ -14,7 +14,7 @@
     const DEFAULT_API_ORIGIN = 'https://dod-social-auth-gateway-190c9rby.uc.gateway.dev';
     const CONFIRM_PATH = '/community/email/password-reset/confirm';
     const RESET_TOKEN_PATTERN = /^[A-Za-z0-9_-]{43}$/;
-    const MIN_PASSWORD_LENGTH = 12;
+    const MIN_PASSWORD_LENGTH = 8;
     const MAX_PASSWORD_LENGTH = 128;
     const MAX_PASSWORD_BYTES = 1024;
     const REQUEST_TIMEOUT_MS = 10000;
@@ -235,7 +235,7 @@
                 validateNewPassword(password);
             } catch (_) {
                 elements['error-message'].textContent =
-                    'Use a password between 12 and 128 characters.';
+                    'Use a password between 8 and 128 characters.';
                 return;
             }
 

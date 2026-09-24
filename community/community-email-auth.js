@@ -135,6 +135,7 @@
         const signupName = requireElement(documentRef, 'signup-display-name');
         const signupEmail = requireElement(documentRef, 'signup-email');
         const signupPassword = requireElement(documentRef, 'signup-password');
+        const signupPasswordConfirm = requireElement(documentRef, 'signup-password-confirm');
         const loginForm = requireElement(documentRef, 'email-login-form');
         const loginButton = requireElement(documentRef, 'email-login-button');
         const loginMessage = requireElement(documentRef, 'email-login-message');
@@ -151,6 +152,10 @@
             const button = isSignup ? signupButton : loginButton;
             const message = isSignup ? signupMessage : loginMessage;
             const passwordInput = isSignup ? signupPassword : loginPassword;
+            if (isSignup && signupPassword.value !== signupPasswordConfirm.value) {
+                signupMessage.textContent = 'The passwords do not match.';
+                return;
+            }
             submitting = true;
             signupButton.disabled = true;
             loginButton.disabled = true;
@@ -170,10 +175,12 @@
                     });
                 }
                 passwordInput.value = '';
+                if (isSignup) signupPasswordConfirm.value = '';
                 message.textContent = 'Success. Opening the community…';
                 onAuthenticated();
             } catch (error) {
                 passwordInput.value = '';
+                if (isSignup) signupPasswordConfirm.value = '';
                 message.textContent = messageFor(error && error.code, mode);
                 submitting = false;
                 signupButton.disabled = false;

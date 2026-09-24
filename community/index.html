@@ -54,8 +54,10 @@
                         <label for="signup-email">Email address</label>
                         <input id="signup-email" name="email" type="email" autocomplete="email" maxlength="254" required>
                         <label for="signup-password">Password</label>
-                        <input id="signup-password" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="128" aria-describedby="signup-password-help" required>
-                        <p id="signup-password-help" class="field-help">Use 12–128 characters.</p>
+                        <input id="signup-password" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" aria-describedby="signup-password-help" required>
+                        <label for="signup-password-confirm">Verify password</label>
+                        <input id="signup-password-confirm" name="password-confirm" type="password" autocomplete="new-password" minlength="8" maxlength="128" aria-describedby="signup-password-help" required>
+                        <p id="signup-password-help" class="field-help">Use 8–128 characters. Both passwords must match.</p>
                         <button id="email-signup-button" class="primary-button" type="submit">Create account</button>
                         <p id="email-signup-message" class="form-message" role="status" aria-live="polite"></p>
                     </form>
@@ -68,7 +70,7 @@
                         <label for="login-email">Email address</label>
                         <input id="login-email" name="email" type="email" autocomplete="email" maxlength="254" required>
                         <label for="login-password">Password</label>
-                        <input id="login-password" name="password" type="password" autocomplete="current-password" minlength="12" maxlength="128" required>
+                        <input id="login-password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="128" required>
                         <button id="email-login-button" class="primary-button" type="submit">Log in</button>
                         <p id="email-login-message" class="form-message" role="status" aria-live="polite"></p>
                     </form>

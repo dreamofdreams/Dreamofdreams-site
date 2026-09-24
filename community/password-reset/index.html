@@ -35,17 +35,17 @@
 
         <section id="form-view" class="panel reset-panel" aria-labelledby="form-title" hidden>
             <h2 id="form-title">Choose a new password</h2>
-            <p id="password-guidance" class="reset-guidance">Use 12 to 128 characters. A longer, unique passphrase is recommended.</p>
+            <p id="password-guidance" class="reset-guidance">Use 8 to 128 characters. A longer, unique passphrase is recommended.</p>
 
             <form id="reset-form" class="reset-form" method="post" action="">
                 <div class="form-field">
                     <label for="new-password">New password</label>
-                    <input id="new-password" name="new-password" type="password" autocomplete="new-password" required aria-describedby="password-guidance error-message">
+                    <input id="new-password" name="new-password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required aria-describedby="password-guidance error-message">
                 </div>
 
                 <div class="form-field">
                     <label for="confirm-password">Confirm new password</label>
-                    <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required aria-describedby="error-message">
+                    <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required aria-describedby="error-message">
                 </div>
 
                 <p id="error-message" class="form-error" role="alert" aria-live="assertive"></p>
