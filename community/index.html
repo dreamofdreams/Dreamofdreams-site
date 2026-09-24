@@ -74,7 +74,15 @@
                         <button id="email-login-button" class="primary-button" type="submit">Log in</button>
                         <p id="email-login-message" class="form-message" role="status" aria-live="polite"></p>
                     </form>
-                    <p class="password-reset-link"><a href="password-reset/">Forgot your password?</a></p>
+                    <details id="password-reset-request" class="password-reset-link">
+                        <summary>Forgot your password?</summary>
+                        <form id="password-reset-request-form" class="email-auth-form">
+                            <label for="password-reset-email">Email address</label>
+                            <input id="password-reset-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+                            <button id="password-reset-request-button" class="secondary-button" type="submit">Email me a reset link</button>
+                            <p id="password-reset-request-message" class="form-message" role="status" aria-live="polite"></p>
+                        </form>
+                    </details>
                 </section>
             </div>
 
