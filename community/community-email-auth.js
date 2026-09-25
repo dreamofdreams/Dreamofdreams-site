@@ -95,6 +95,16 @@
                 return { authenticated: true };
             },
 
+            async requestPasswordReset({ email }) {
+                const response = await postCredentials(
+                    fetchImpl, origin, '/community/email/password-reset/request', { email }
+                );
+                if (response.status !== 202) {
+                    throw new EmailAuthError('SERVICE_UNAVAILABLE');
+                }
+                return { accepted: true };
+            },
+
             async login({ email, password }) {
                 const response = await postCredentials(fetchImpl, origin, '/community/email/login', {
                     email,
@@ -141,6 +151,10 @@
         const loginMessage = requireElement(documentRef, 'email-login-message');
         const loginEmail = requireElement(documentRef, 'login-email');
         const loginPassword = requireElement(documentRef, 'login-password');
+        const resetForm = requireElement(documentRef, 'password-reset-request-form');
+        const resetEmail = requireElement(documentRef, 'password-reset-email');
+        const resetButton = requireElement(documentRef, 'password-reset-request-button');
+        const resetMessage = requireElement(documentRef, 'password-reset-request-message');
         let submitting = false;
 
         async function submit(mode) {
@@ -187,6 +201,24 @@
                 loginButton.disabled = false;
             }
         }
+
+        resetForm.addEventListener('submit', async event => {
+            event.preventDefault();
+            if (resetButton.disabled || !resetForm.reportValidity()) return;
+            resetButton.disabled = true;
+            resetMessage.textContent = 'Requesting a reset link…';
+            try {
+                await client.requestPasswordReset({ email: resetEmail.value });
+                resetMessage.textContent =
+                    'If this email has an account, a password reset link will arrive shortly.';
+                resetEmail.value = '';
+            } catch (_) {
+                resetMessage.textContent =
+                    'We could not request a reset link right now. Please try again.';
+            } finally {
+                resetButton.disabled = false;
+            }
+        });
 
         signupForm.addEventListener('submit', event => {
             event.preventDefault();
