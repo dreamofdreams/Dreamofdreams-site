@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Dream of Dreams community reading room and discussion board.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://dod-social-auth-gateway-190c9rby.uc.gateway.dev; img-src 'self' data:; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Discussions | Dream of Dreams Community</title>
+    <link rel="stylesheet" href="../community.css">
+    <link rel="stylesheet" href="discussions.css">
+    <script src="discussions.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+        <a class="brand" href="../../index.html" aria-label="Dream of Dreams home">
+            <img src="../../dream_of_dreams_logo.png" alt="" width="64" height="64">
+            <span>Dream of Dreams</span>
+        </a>
+        <a class="home-link" href="../index.html">Community home</a>
+    </header>
+    <main id="main-content" class="board-main">
+        <div id="board-status" class="status" role="status" aria-live="polite">Checking your community session.</div>
+        <section id="loading-view" class="panel board-access" aria-labelledby="loading-title">
+            <div class="spinner" aria-hidden="true"></div>
+            <h1 id="loading-title">Opening the reading room</h1>
+            <p>Checking your community membership.</p>
+        </section>
+        <section id="signed-out-view" class="panel board-access" aria-labelledby="signed-out-title" hidden>
+            <p class="eyebrow">Members only</p>
+            <h1 id="signed-out-title">Join the conversation</h1>
+            <p>Log in or create a community account to enter the reading room.</p>
+            <a class="primary-button" href="../index.html">Go to community login</a>
+        </section>
+        <section id="error-view" class="panel board-access" aria-labelledby="error-title" hidden>
+            <p class="eyebrow">Connection interrupted</p>
+            <h1 id="error-title">We could not open discussions</h1>
+            <p>Please try again when your connection is ready.</p>
+            <button id="retry-button" class="secondary-button" type="button">Try again</button>
+        </section>
+        <div id="member-view" hidden>
+            <section class="board-hero" aria-labelledby="board-title">
+                <div class="board-hero-copy">
+                    <p class="eyebrow">The community reading room</p>
+                    <h1 id="board-title">Stories grow when we share them.</h1>
+                    <p>A place for readers and creators to gather around the world of <cite>Dream of Dreams</cite>.</p>
+                    <div class="member-greeting">Welcome to the room, <strong id="member-name">Dreamer</strong>.</div>
+                </div>
+                <div class="board-emblem" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span></div>
+            </section>
+
+            <div class="board-layout">
+                <section class="board-content" aria-labelledby="spaces-title">
+                    <div class="board-section-heading">
+                        <div>
+                            <p class="eyebrow">Find your place</p>
+                            <h2 id="spaces-title">Conversation spaces</h2>
+                        </div>
+                        <span class="board-label">Members</span>
+                    </div>
+                    <div class="space-grid">
+                        <article class="space-card">
+                            <span class="space-symbol" aria-hidden="true">01</span>
+                            <div><h3>The reading circle</h3><p>Share reflections on the story, its themes, and the moments that stay with you.</p></div>
+                        </article>
+                        <article class="space-card">
+                            <span class="space-symbol" aria-hidden="true">02</span>
+                            <div><h3>Worlds &amp; wonder</h3><p>Explore places, characters, virtues, and the questions they inspire.</p></div>
+                        </article>
+                        <article class="space-card">
+                            <span class="space-symbol" aria-hidden="true">03</span>
+                            <div><h3>The creators’ corner</h3><p>Talk about storytelling, art, music, and the craft behind imagined worlds.</p></div>
+                        </article>
+                    </div>
+
+                    <section class="conversation-preview panel" aria-labelledby="conversations-title">
+                        <div class="board-section-heading">
+                            <div><p class="eyebrow">The conversation</p><h2 id="conversations-title">Recent discussions</h2></div>
+                        </div>
+                        <form id="new-thread" class="discussion-form">
+                            <h3>Start a conversation</h3>
+                            <label for="thread-topic">Conversation space</label>
+                            <select id="thread-topic" required>
+                                <option value="reading-circle">The reading circle</option>
+                                <option value="worlds-and-wonder">Worlds &amp; wonder</option>
+                                <option value="creators-corner">The creators’ corner</option>
+                            </select>
+                            <label for="thread-title">Title</label>
+                            <input id="thread-title" maxlength="120" required placeholder="What would you like to explore?">
+                            <label for="thread-body">Your thoughts</label>
+                            <textarea id="thread-body" maxlength="4000" required placeholder="Start with a thought, a question, or a story detail…"></textarea>
+                            <button class="primary-button" type="submit">Post discussion</button>
+                            <p id="thread-message" class="board-message" role="status" aria-live="polite"></p>
+                        </form>
+                        <div id="thread-list" class="thread-list" aria-live="polite"></div>
+                    </section>
+                </section>
+
+                <aside class="board-sidebar" aria-label="Reading room information">
+                    <section class="panel sidebar-panel">
+                        <p class="eyebrow">The reading room</p>
+                        <h2>A thoughtful space</h2>
+                        <p>Bring your questions, creative ideas, and thoughtful reflections into the conversation.</p>
+                        <p class="sidebar-note">Share a question or reply to a fellow reader. Please be kind and keep the conversation on topic.</p>
+                    </section>
+                    <section class="panel sidebar-panel">
+                        <p class="eyebrow">Keep exploring</p>
+                        <h2>Begin the journey</h2>
+                        <p>Revisit the opening chapter or explore the latest notes from the world of Dream of Dreams.</p>
+                        <a href="../../dream-of-dreams-chapter-1-sample.pdf">Read chapter one <span aria-hidden="true">↗</span></a>
+                        <a href="../../blogs.html">Explore the journal <span aria-hidden="true">↗</span></a>
+                    </section>
+                </aside>
+            </div>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <p>&copy; 2026 Dream of Dreams LLC</p>
+        <nav aria-label="Legal">
+            <a href="../../privacy-policy.html">Privacy Policy</a>
+            <a href="../../terms-of-service.html">Terms of Service</a>
+            <a href="../../contact.html">Contact</a>
+        </nav>
+    </footer>
+    <noscript><p class="noscript-message">JavaScript is required to check your membership. <a href="../index.html">Return to the community</a>.</p></noscript>
+</body>
+</html>

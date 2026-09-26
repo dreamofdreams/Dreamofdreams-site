@@ -1,0 +1,63 @@
+.board-main { width: min(78rem, calc(100% - 2rem)); padding-top: clamp(2rem, 6vw, 4.5rem); }
+.board-access { width: min(38rem, 100%); margin: 4rem auto; padding: 2.5rem; text-align: center; }
+.board-access h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.board-access p:not(.eyebrow) { color: var(--muted); }
+.board-hero {
+    position: relative; display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(12rem, 0.7fr);
+    align-items: center; gap: 2rem; overflow: hidden; min-height: 25rem;
+    padding: clamp(2rem, 6vw, 4rem); border: 1px solid rgba(224, 186, 92, 0.45);
+    border-radius: 1.7rem; background: radial-gradient(circle at 85% 30%, rgba(224, 186, 92, 0.18), transparent 34%), linear-gradient(135deg, #18203b, #0b1023 75%);
+    box-shadow: var(--shadow);
+}
+.board-hero::before { content: ""; position: absolute; inset: 1rem; border: 1px solid rgba(224, 186, 92, 0.13); border-radius: 1.1rem; pointer-events: none; }
+.board-hero-copy { position: relative; z-index: 1; }
+.board-hero h1 { margin: 0 0 1rem; font-size: clamp(2.5rem, 5.8vw, 5.3rem); line-height: 1.05; }
+.board-hero-copy > p:not(.eyebrow) { max-width: 36rem; color: var(--muted); font-size: 1.1rem; }
+.member-greeting { display: inline-block; margin-top: 1.4rem; padding: 0.65rem 1rem; border: 1px solid rgba(224, 186, 92, 0.4); border-radius: 999px; background: rgba(224, 186, 92, 0.08); }
+.member-greeting strong { color: var(--gold-light); }
+.board-emblem { display: grid; width: min(100%, 15rem); aspect-ratio: 1; place-items: center; justify-self: center; border: 1px solid rgba(224, 186, 92, 0.42); border-radius: 50%; box-shadow: 0 0 0 1.1rem rgba(224, 186, 92, 0.04), inset 0 0 4rem rgba(224, 186, 92, 0.1); color: var(--gold-light); font-family: Georgia, serif; font-size: 4rem; transform: rotate(-17deg); }
+.board-emblem span:nth-child(2) { margin-top: -5rem; font-size: 2.3rem; }
+.board-emblem span:nth-child(3) { margin-top: -8rem; margin-left: 5rem; font-size: 1.5rem; }
+.board-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 19rem); gap: clamp(1rem, 3vw, 2rem); margin-top: clamp(2rem, 5vw, 3.5rem); }
+.board-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.2rem; }
+.board-section-heading h2 { margin-bottom: 0; }
+.board-label { padding: 0.3rem 0.7rem; border: 1px solid var(--panel-border); border-radius: 999px; color: var(--gold-light); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
+.space-grid { display: grid; gap: 0.85rem; }
+.space-card { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: 1rem; align-items: start; padding: 1.4rem; border: 1px solid rgba(255, 255, 255, 0.13); border-radius: 1rem; background: rgba(17, 26, 48, 0.94); }
+.space-symbol { display: grid; width: 3rem; height: 3rem; place-items: center; border: 1px solid rgba(224, 186, 92, 0.46); border-radius: 0.8rem; color: var(--gold-light); font-family: Georgia, serif; }
+.space-card h3 { margin: 0 0 0.35rem; }
+.space-card p { margin: 0; color: var(--muted); }
+.conversation-preview { margin-top: 2rem; padding: clamp(1.4rem, 4vw, 2rem); }
+.discussion-form { display: grid; gap: 0.6rem; padding: 1.5rem; border: 1px solid var(--panel-border); border-radius: 1rem; background: rgba(4, 8, 19, 0.3); }
+.discussion-form h3 { margin: 0 0 0.4rem; }
+.discussion-form label, .reply-form label { font-weight: 700; }
+.discussion-form input, .discussion-form select, .discussion-form textarea, .reply-form textarea { width: 100%; padding: 0.8rem 1rem; border: 1px solid rgba(224, 186, 92, 0.45); border-radius: 0.7rem; background: #10182d; color: var(--ink); font: inherit; }
+.discussion-form textarea, .reply-form textarea { min-height: 7rem; resize: vertical; }
+.discussion-form button, .reply-form button { width: fit-content; margin-top: 0.5rem; }
+.discussion-form :is(input, select, textarea):focus-visible, .reply-form textarea:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.thread-list { display: grid; gap: 1rem; margin-top: 1.5rem; }
+.thread-card { padding: 1.4rem; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 1rem; background: rgba(4, 8, 19, 0.32); }
+.thread-card h3 { margin: 0.4rem 0 0.7rem; }
+.board-meta { color: var(--gold-light); font-size: 0.85rem; }
+.board-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.board-muted, .board-message { color: var(--muted); }
+.thread-toggle { margin-top: 0.8rem; }
+.thread-detail { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--panel-border); }
+.reply-list { display: grid; gap: 0.8rem; }
+.reply-card { padding: 0.9rem 1rem; border-left: 2px solid var(--gold); background: rgba(255, 255, 255, 0.04); }
+.reply-card p { margin: 0.25rem 0; }
+.reply-form { display: grid; gap: 0.65rem; margin-top: 1.2rem; }
+.reply-form label textarea { display: block; margin-top: 0.5rem; }
+.empty-discussions { padding: clamp(2rem, 5vw, 3rem) 1rem; border: 1px dashed rgba(224, 186, 92, 0.35); border-radius: 1rem; text-align: center; background: rgba(4, 8, 19, 0.25); }
+.empty-discussions h3 { margin-bottom: 0.4rem; }
+.empty-discussions p { max-width: 28rem; margin: 0 auto; color: var(--muted); }
+.empty-mark { color: var(--gold); font-size: 2.8rem; }
+.board-sidebar { display: grid; align-content: start; gap: 1rem; }
+.sidebar-panel { padding: 1.5rem; }
+.sidebar-panel h2 { font-size: 1.5rem; }
+.sidebar-panel p:not(.eyebrow) { color: var(--muted); }
+.sidebar-panel .sidebar-note { padding-top: 1rem; border-top: 1px solid var(--panel-border); font-size: 0.9rem; }
+.sidebar-panel a { display: block; margin-top: 0.8rem; font-weight: 800; }
+@media (max-width: 54rem) { .board-layout { grid-template-columns: 1fr; } .board-sidebar { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 40rem) { .board-hero { grid-template-columns: 1fr; } .board-emblem { display: none; } .board-sidebar { grid-template-columns: 1fr; } }
+@media (forced-colors: active) { .board-hero, .space-card, .empty-discussions, .board-emblem { border: 1px solid CanvasText; } }
