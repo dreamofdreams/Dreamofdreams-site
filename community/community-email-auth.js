@@ -23,6 +23,7 @@
 }(typeof globalThis !== 'undefined' ? globalThis : this, function emailAuthFactory() {
     const DEFAULT_API_ORIGIN = 'https://dod-social-auth-gateway-190c9rby.uc.gateway.dev';
     const REQUEST_TIMEOUT_MS = 10000;
+    const SIGNUP_TIMEOUT_MS = 20000;
 
     class EmailAuthError extends Error {
         constructor(code) {
@@ -47,12 +48,12 @@
         return parsed.origin;
     }
 
-    async function fetchWithTimeout(fetchImpl, url, options) {
+    async function fetchWithTimeout(fetchImpl, url, options, timeoutMs = REQUEST_TIMEOUT_MS) {
         if (typeof fetchImpl !== 'function') throw new EmailAuthError('SERVICE_UNAVAILABLE');
         if (typeof AbortController === 'undefined') return fetchImpl(url, options);
 
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+        const timeout = setTimeout(() => controller.abort(), timeoutMs);
         try {
             return await fetchImpl(url, { ...options, signal: controller.signal });
         } finally {
@@ -72,7 +73,7 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(credentials)
-            });
+            }, path === '/community/email/signup' ? SIGNUP_TIMEOUT_MS : REQUEST_TIMEOUT_MS);
         } catch (_) {
             throw new EmailAuthError('SERVICE_UNAVAILABLE');
         }
