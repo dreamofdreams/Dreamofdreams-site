@@ -59,6 +59,14 @@
 .media-share-option { display: flex; gap: 0.5rem; align-items: start; font-weight: 400 !important; }
 .media-share-option input { width: 1.2rem; height: 1.2rem; flex: none; }
 .media-upload-form button { width: fit-content; }
+.tiktok-share-button { margin: 0.3rem 0.25rem 0.45rem; }
+.tiktok-share-panel { display: grid; gap: 0.7rem; padding: 0.7rem 0.25rem; }
+.tiktok-share-form { display: grid; gap: 0.8rem; min-width: 0; }
+.tiktok-share-form label:not(.media-share-option) { display: grid; gap: 0.4rem; font-weight: 700; }
+.tiktok-share-form :is(textarea, select) { width: 100%; padding: 0.7rem; border: 1px solid rgba(224, 186, 92, 0.45); border-radius: 0.6rem; background: #10182d; color: var(--ink); font: inherit; }
+.tiktok-share-form textarea { resize: vertical; }
+.tiktok-share-form :is(textarea, select, button, input):focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.tiktok-share-form button { width: fit-content; }
 .empty-discussions { padding: clamp(2rem, 5vw, 3rem) 1rem; border: 1px dashed rgba(224, 186, 92, 0.35); border-radius: 1rem; text-align: center; background: rgba(4, 8, 19, 0.25); }
 .empty-discussions h3 { margin-bottom: 0.4rem; }
 .empty-discussions p { max-width: 28rem; margin: 0 auto; color: var(--muted); }
