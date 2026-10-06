@@ -206,6 +206,8 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     outline-offset: 3px;
 }
 </style>
+<link rel="stylesheet" href="book-reviews.css">
+<script src="book-reviews.js" defer></script>
 </head>
 
 <body class="home wp-singular page-template-default page page-id-13 wp-embed-responsive wp-theme-oceanwp oceanwp-theme dropdown-mobile no-header-border default-breakpoint has-sidebar content-right-sidebar page-header-disabled has-breadcrumbs elementor-default elementor-template-full-width elementor-kit-6 elementor-page elementor-page-13" itemscope="itemscope" itemtype="https://schema.org/WebPage">
@@ -658,8 +660,24 @@ Through epic journeys of love, sacrifice, adventure, and the timeless struggle b
 <div class="elementor-widget-container">
 <div class="elementor-testimonial" id="reader-reviews">
 <div class="elementor-testimonial__content">
-<p class="elementor-testimonial__text">No reader reviews yet. Be the first to review.</p>
-<p style="font-size:16px;line-height:1.6;margin-top:16px;">Review submissions will open once Google sign-in is available.</p>
+<p class="reviews-help">Reviews are posted by readers signed in with Google. Sign-in confirms an account; it does not confirm a book purchase.</p>
+<div id="book-review-list" aria-live="polite"><p>Loading reader reviews…</p></div>
+<div id="review-signin"><a class="review-google-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/google/login?return=reviews">Continue with Google to write a review</a></div>
+<form id="book-review-form" hidden>
+<h4>Your review</h4>
+<p id="review-author"></p>
+<label for="review-rating">Rating</label>
+<select id="review-rating" required><option value="">Choose a rating</option><option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option></select>
+<label for="review-text">Your thoughts on the book</label>
+<textarea id="review-text" rows="5" minlength="10" maxlength="5000" required placeholder="Share your honest reading experience."></textarea>
+<label class="review-spoiler-option"><input id="review-spoiler" type="checkbox"> Contains spoilers</label>
+<p class="reviews-help">Your Google display name, rating, review and date will be public. Please keep personal information out of your review.</p>
+<button class="review-submit" type="submit">Publish review</button>
+<button id="review-delete" type="button" hidden>Remove my review</button>
+</form>
+<p id="review-status" role="status" aria-live="polite"></p>
+</div>
+
 </div>
 </div>
 </div>

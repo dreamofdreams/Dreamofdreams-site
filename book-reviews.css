@@ -1,0 +1,19 @@
+#reader-reviews {width:100%;scroll-margin-top:100px}
+#reader-reviews [hidden] {display:none!important}
+#reader-reviews .reviews-help {font-size:14px;line-height:1.65;color:#575249}
+#reader-reviews .book-review-card {margin:22px 0;padding:22px 0;border-bottom:1px solid #d7cdb6}
+#reader-reviews .review-stars {color:#82621e;font-size:22px;letter-spacing:2px}
+#reader-reviews .review-name {font-weight:700;font-size:17px;margin-bottom:4px}
+#reader-reviews .review-meta {font-size:13px;color:#575249}
+#reader-reviews .elementor-testimonial__text {white-space:pre-wrap;overflow-wrap:anywhere;font-size:17px;line-height:1.7}
+#reader-reviews details summary {cursor:pointer;color:#70551c;font-weight:600;padding:10px 0}
+#reader-reviews .review-google-button,#reader-reviews .review-submit {display:inline-block;background:#fff;color:#302a1f;border:1px solid #bca574;border-radius:5px;padding:12px 18px;line-height:1.5;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer}
+#reader-reviews .review-submit {background:#806324;color:white}
+#book-review-form {margin-top:25px}
+#book-review-form label {display:block;margin:14px 0 6px;font-size:15px}
+#book-review-form select,#book-review-form textarea {display:block;width:100%;max-width:100%;background:#fff;color:#302a1f;border:1px solid #bca574;border-radius:4px;padding:10px;font:inherit}
+#book-review-form .review-spoiler-option {display:flex;gap:10px;align-items:center}
+#book-review-form input[type=checkbox] {width:18px;height:18px}
+#review-delete {display:block;margin-top:12px;background:transparent;border:1px solid #8b7160;color:#493228;padding:8px 12px;cursor:pointer}
+#reader-reviews a:focus-visible,#reader-reviews button:focus-visible,#reader-reviews summary:focus-visible {outline:3px solid #2776b8;outline-offset:3px}
+#review-status {font-size:15px;line-height:1.6;margin-top:12px}
