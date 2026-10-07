@@ -38,7 +38,7 @@ async function loadOwn() {
   document.getElementById('review-spoiler').checked=own.review?.spoiler||false;
   remove.hidden=!own.review;
   if(own.review)status.textContent=own.review.status==='approved'?'Your review is approved and published.':own.review.status==='rejected'?'Your review was not approved. You may edit and submit it again.':'Your review is awaiting approval.';
-  form.querySelector('[type=submit]').textContent=own.review?'Update and submit for approval':'Submit for approval';
+  form.querySelector('[type=submit]').textContent='Submit';
  }catch(e){if(location.hash==='#reader-reviews') status.textContent='Sign in with Google to write a review. If you just signed in, your browser may be blocking the community session cookie.';}
 }
 form.addEventListener('submit',async event=>{
