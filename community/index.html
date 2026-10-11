@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="community.css?v=20261011-dashboard">
     <link rel="stylesheet" href="../book-reviews.css">
     <link rel="stylesheet" href="dashboard.css?v=20261011">
-    <link rel="stylesheet" href="community-email-auth.css">
+    <link rel="stylesheet" href="community-email-auth.css?v=20261011-clear">
+    <script src="auth-choice.js?v=20261011-clear" defer></script>
     <script src="community.js?v=20261011-dashboard" defer></script>
     <script src="../book-reviews.js" defer></script>
     <script src="community-email-auth.js" defer></script>
@@ -44,17 +45,17 @@
         <section id="signed-out-view" class="auth-options" aria-labelledby="signed-out-title" hidden>
             <div class="section-heading auth-heading">
                 <p class="eyebrow">Choose how to continue</p>
-                <h2 id="signed-out-title">Join or log in</h2>
+                <h2 id="signed-out-title">Your community starts here</h2>
+                <p>New here? Sign up. Already a member? Log in.</p>
+                <div class="auth-mode-buttons" role="group" aria-label="Choose sign up or log in">
+                    <button id="choose-signup" class="secondary-button" type="button" aria-pressed="false" aria-controls="signup-panel">Sign up</button>
+                    <button id="choose-login" class="primary-button" type="button" aria-pressed="true" aria-controls="login-panel">Log in</button>
+                </div>
             </div>
 
-            <section class="panel auth-panel" aria-label="Google sign-in">
-                <h3>Continue with Google</h3>
-                <p>Join or log in with your Google account to participate and write book reviews.</p>
-                <a class="secondary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/google/login">Continue with Google</a>
-            </section>
             <div class="auth-grid">
-                <section class="panel auth-panel email-auth-panel" aria-labelledby="email-signup-title">
-                    <h3 id="email-signup-title">Create an account</h3>
+                <section class="panel auth-panel email-auth-panel" id="signup-panel" aria-labelledby="email-signup-title" hidden>
+                    <h3 id="email-signup-title">Sign up with email</h3>
                     <p>Join with your email address and a secure password.</p>
                     <form id="email-signup-form" class="email-auth-form">
                         <label for="signup-display-name">Display name</label>
@@ -66,14 +67,14 @@
                         <label for="signup-password-confirm">Verify password</label>
                         <input id="signup-password-confirm" name="password-confirm" type="password" autocomplete="new-password" minlength="8" maxlength="128" aria-describedby="signup-password-help" required>
                         <p id="signup-password-help" class="field-help">Use 8–128 characters. Both passwords must match.</p>
-                        <button id="email-signup-button" class="primary-button" type="submit">Create account</button>
+                        <button id="email-signup-button" class="primary-button" type="submit">Sign up</button>
                         <p id="email-signup-message" class="form-message" role="status" aria-live="polite"></p>
                     </form>
                 </section>
 
-                <section class="panel auth-panel email-auth-panel" aria-labelledby="email-login-title">
+                <section class="panel auth-panel email-auth-panel" id="login-panel" aria-labelledby="email-login-title">
                     <h3 id="email-login-title">Log in with email</h3>
-                    <p>Welcome back. Enter your community credentials.</p>
+                    <p>Welcome back. Enter your email address and password.</p>
                     <form id="email-login-form" class="email-auth-form">
                         <label for="login-email">Email address</label>
                         <input id="login-email" name="email" type="email" autocomplete="email" maxlength="254" required>
@@ -86,14 +87,14 @@
                 </section>
             </div>
 
-            <section class="panel auth-panel social-auth-panel" aria-labelledby="tiktok-title">
-                <h3 id="tiktok-title">Continue with TikTok</h3>
-                <p>Join to create a new community account, or log in if you have already joined. Use your TikTok identity to enter the community. Posting to TikTok requires a separate connection and your permission.</p>
-                <div class="auth-actions" aria-label="TikTok community authentication">
-                    <a id="tiktok-signup" class="primary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/tiktok/signup">Join with TikTok</a>
+            <section class="panel auth-panel social-auth-panel" aria-labelledby="social-options-title">
+                <h3 id="social-options-title">Or log in with</h3>
+                <div class="auth-actions">
+                    <a class="secondary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/google/login">Continue with Google</a>
+                    <a id="tiktok-signup" class="secondary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/tiktok/signup" hidden>Sign up with TikTok</a>
                     <a id="tiktok-login" class="secondary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/tiktok/login">Log in with TikTok</a>
                 </div>
-                <p class="privacy-note">We never place your TikTok access token in this page or browser storage.</p>
+                <p class="privacy-note">Google sign-in also lets you write book reviews.</p>
             </section>
 
             <p class="legal-links auth-legal-links">

@@ -115,3 +115,15 @@
         border: 1px solid FieldText;
     }
 }
+
+.auth-options{max-width:38rem}
+.auth-heading>p:not(.eyebrow){color:var(--muted)}
+.auth-mode-buttons{display:flex;justify-content:center;gap:1rem;margin:1.5rem 0}
+.auth-mode-buttons button{flex:1;min-height:3.25rem;margin:0;border-radius:.7rem;font-size:1.05rem}
+.auth-grid{display:block}
+.auth-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem}
+.auth-actions a{flex:1 1 200px}
+.social-auth-panel{padding:1.5rem}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem)}
+main{padding-top:clamp(2rem,5vw,3rem)}
+.hero{margin-bottom:2rem}
