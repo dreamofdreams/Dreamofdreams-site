@@ -6,6 +6,9 @@
     function choose(mode) {
         const creating = mode === 'signup';
         const loggingIn = mode === 'login';
+        const reviewSignIn = document.getElementById('review-signin');
+        const reviewForm = document.getElementById('book-review-form');
+        if (reviewSignIn) reviewSignIn.hidden = (!creating && !loggingIn) || (reviewForm && !reviewForm.hidden);
         document.getElementById('social-auth-options').hidden = !creating && !loggingIn;
         document.getElementById('signup-panel').hidden = !creating;
         document.getElementById('login-panel').hidden = !loggingIn;
