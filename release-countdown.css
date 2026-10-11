@@ -1,0 +1,20 @@
+
+.dod-release-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 22px;padding:12px 20px;background:#241f15;color:#f8f2e5;border-bottom:1px solid #c5a059;font-family:Manrope,Arial,sans-serif;font-size:13px;line-height:1.5;text-align:center}
+.dod-release-bar a,.dod-release-bar a:visited{color:#ead19a;text-decoration:underline;text-underline-offset:4px;font-weight:700}
+.dod-release-bar a:hover{color:#fff}
+.dod-release-bar a:focus-visible,.dod-release-panel a:focus-visible{outline:2px solid #c5a059;outline-offset:5px}
+.dod-release-bar .dod-release-clock{font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:.04em;color:#ead19a}
+.dod-release-panel{box-sizing:border-box;width:100%;max-width:620px;padding:24px 20px;margin:20px 0 24px;border:1px solid #b08b43;background:linear-gradient(135deg,#faf7ee,#efe6d2);text-align:center;color:#51401d;box-shadow:0 5px 20px rgba(92,70,25,.06)}
+.dod-release-panel .dod-release-heading{font-family:"Noto Serif",Georgia,serif;font-size:20px;line-height:1.4;margin:0 0 6px;color:#6c531e}
+.dod-release-panel .dod-release-date{font-size:13px;letter-spacing:.08em;margin:0 0 18px}
+.dod-release-digits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:420px;margin:0 auto 20px}
+.dod-release-unit{border-right:1px solid rgba(176,139,67,.3)}
+.dod-release-unit:last-child{border:0}
+.dod-release-value{display:block;font-family:"Noto Serif Display",Georgia,serif;font-size:clamp(26px,4vw,40px);line-height:1.2;color:#70541c;font-variant-numeric:tabular-nums}
+.dod-release-label{display:block;font-family:Manrope,Arial,sans-serif;font-size:10px;letter-spacing:.12em;margin-top:6px;text-transform:uppercase}
+.dod-release-panel .dod-release-preorder,.dod-release-panel .dod-release-preorder:visited{display:inline-block;padding:12px 24px;background:linear-gradient(110deg,#745715,#c5a059);color:#fff;font-family:Manrope,Arial,sans-serif;font-size:13px;font-weight:700;letter-spacing:.07em;text-decoration:none}
+.dod-release-panel .dod-release-preorder:hover{background:#745715;color:#fff}
+#exclusive-early-access{scroll-margin-top:110px}
+@media(max-width:600px){.dod-release-bar{gap:6px;padding:10px 14px;font-size:12px}.dod-release-bar>span:first-child{flex-basis:100%}.dod-release-bar a{display:block}.dod-release-panel{padding:22px 12px}.dod-release-panel .dod-release-heading{font-size:18px}.dod-release-digits{gap:4px}.dod-release-value{font-size:29px}}
+
+.dod-release-digits[hidden]{display:none}
