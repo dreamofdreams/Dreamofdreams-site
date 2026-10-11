@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../book-reviews.css">
     <link rel="stylesheet" href="dashboard.css?v=20261011">
     <link rel="stylesheet" href="community-email-auth.css?v=20261011-clear">
-    <script src="auth-choice.js?v=20261011-clear" defer></script>
+    <script src="auth-choice.js?v=20261011-choice-only" defer></script>
     <script src="community.js?v=20261011-dashboard" defer></script>
     <script src="../book-reviews.js" defer></script>
     <script src="community-email-auth.js" defer></script>
@@ -49,7 +49,7 @@
                 <p>New here? Sign up. Already a member? Log in.</p>
                 <div class="auth-mode-buttons" role="group" aria-label="Choose sign up or log in">
                     <button id="choose-signup" class="secondary-button" type="button" aria-pressed="false" aria-controls="signup-panel">Sign up</button>
-                    <button id="choose-login" class="primary-button" type="button" aria-pressed="true" aria-controls="login-panel">Log in</button>
+                    <button id="choose-login" class="secondary-button" type="button" aria-pressed="false" aria-controls="login-panel">Log in</button>
                 </div>
             </div>
 
@@ -72,7 +72,7 @@
                     </form>
                 </section>
 
-                <section class="panel auth-panel email-auth-panel" id="login-panel" aria-labelledby="email-login-title">
+                <section class="panel auth-panel email-auth-panel" id="login-panel" aria-labelledby="email-login-title" hidden>
                     <h3 id="email-login-title">Log in with email</h3>
                     <p>Welcome back. Enter your email address and password.</p>
                     <form id="email-login-form" class="email-auth-form">
@@ -87,7 +87,7 @@
                 </section>
             </div>
 
-            <section class="panel auth-panel social-auth-panel" aria-labelledby="social-options-title">
+            <section class="panel auth-panel social-auth-panel" id="social-auth-options" aria-labelledby="social-options-title" hidden>
                 <h3 id="social-options-title">Or log in with</h3>
                 <div class="auth-actions">
                     <a class="secondary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/google/login">Continue with Google</a>

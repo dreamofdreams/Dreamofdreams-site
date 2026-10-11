@@ -5,17 +5,19 @@
     if (!signup || !login) return;
     function choose(mode) {
         const creating = mode === 'signup';
+        const loggingIn = mode === 'login';
+        document.getElementById('social-auth-options').hidden = !creating && !loggingIn;
         document.getElementById('signup-panel').hidden = !creating;
-        document.getElementById('login-panel').hidden = creating;
+        document.getElementById('login-panel').hidden = !loggingIn;
         document.getElementById('tiktok-signup').hidden = !creating;
-        document.getElementById('tiktok-login').hidden = creating;
+        document.getElementById('tiktok-login').hidden = !loggingIn;
         document.getElementById('social-options-title').textContent = creating ? 'Or sign up with' : 'Or log in with';
         signup.setAttribute('aria-pressed', String(creating));
-        login.setAttribute('aria-pressed', String(!creating));
+        login.setAttribute('aria-pressed', String(loggingIn));
         signup.className = creating ? 'primary-button' : 'secondary-button';
-        login.className = creating ? 'secondary-button' : 'primary-button';
+        login.className = loggingIn ? 'primary-button' : 'secondary-button';
     }
     signup.addEventListener('click', function () { choose('signup'); });
     login.addEventListener('click', function () { choose('login'); });
-    choose(location.hash === '#signup' ? 'signup' : 'login');
+    choose(null);
 })();
