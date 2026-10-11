@@ -7,9 +7,12 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://dod-social-auth-gateway-190c9rby.uc.gateway.dev; img-src 'self' https: data:; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://dod-social-auth-gateway-190c9rby.uc.gateway.dev; frame-ancestors 'none'; upgrade-insecure-requests">
     <title>Community | Dream of Dreams</title>
-    <link rel="stylesheet" href="community.css">
+    <link rel="stylesheet" href="community.css?v=20261011-dashboard">
+    <link rel="stylesheet" href="../book-reviews.css">
+    <link rel="stylesheet" href="dashboard.css?v=20261011">
     <link rel="stylesheet" href="community-email-auth.css">
-    <script src="community.js" defer></script>
+    <script src="community.js?v=20261011-dashboard" defer></script>
+    <script src="../book-reviews.js" defer></script>
     <script src="community-email-auth.js" defer></script>
 </head>
 <body>
@@ -20,7 +23,7 @@
             <img src="../dream_of_dreams_logo.png" alt="" width="64" height="64">
             <span>Dream of Dreams</span>
         </a>
-        <a class="home-link" href="../index.html">Return home</a>
+        <nav class="dashboard-header-nav" aria-label="Community navigation"><a href="discussions/">Discussions</a><a href="#reader-reviews">Book reviews</a><a class="home-link" href="../index.html">Return home</a></nav>
     </header>
 
     <main id="main-content">
@@ -85,7 +88,7 @@
 
             <section class="panel auth-panel social-auth-panel" aria-labelledby="tiktok-title">
                 <h3 id="tiktok-title">Continue with TikTok</h3>
-                <p>Join to create a new community account, or log in if you have already joined. Dream of Dreams receives only your TikTok display name and avatar.</p>
+                <p>Join to create a new community account, or log in if you have already joined. Use your TikTok identity to enter the community. Posting to TikTok requires a separate connection and your permission.</p>
                 <div class="auth-actions" aria-label="TikTok community authentication">
                     <a id="tiktok-signup" class="primary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/tiktok/signup">Join with TikTok</a>
                     <a id="tiktok-login" class="secondary-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/tiktok/login">Log in with TikTok</a>
@@ -108,13 +111,13 @@
         </section>
 
         <section id="member-view" aria-labelledby="welcome-title" hidden>
-            <p><a class="secondary-button" href="../#reader-reviews">Read or write a book review</a></p>
+            <nav class="dashboard-actions" aria-label="Member shortcuts"><a class="primary-button" href="discussions/">Open discussions</a><a class="secondary-button" href="#reader-reviews">Read or write a review</a><a class="secondary-button" href="../index.html#exclusive-early-access">Get the full book</a></nav>
             <div class="panel member-card">
                 <img id="member-avatar" class="avatar" src="../dream_of_dreams_logo.png" alt="" width="112" height="112">
                 <div>
                     <p class="eyebrow">Community member</p>
                     <h2 id="welcome-title">Welcome, <span id="member-name">Dreamer</span></h2>
-                    <p>Your gateway to reader updates, creator resources, and the world of Hysco.</p>
+                    <p>Your gateway to reader updates, creator resources, and the world of Hysco.</p><p id="member-provider" class="member-provider"></p>
                 </div>
                 <button id="logout-button" class="secondary-button" type="button">Log out</button>
             </div>
@@ -128,7 +131,7 @@
                 <div class="resource-grid">
                     <article class="resource-card">
                         <h3>Enter the reading room</h3>
-                        <p>Share ideas about the story, its world, and the art of creating.</p>
+                        <p>Start a discussion, reply to fellow readers, and share photos or short videos.</p>
                         <a href="discussions/">Open discussions</a>
                     </article>
                     <article class="resource-card">
@@ -140,7 +143,7 @@
                     <article class="resource-card">
                         <h3>Discover the books</h3>
                         <p>Explore the story, characters, and available Dream of Dreams editions.</p>
-                        <a href="../books.html">Visit the books page</a>
+                        <a href="../index.html#purchase-options">Explore book editions</a>
                     </article>
 
                     <article class="resource-card">
@@ -150,6 +153,29 @@
                     </article>
                 </div>
             </section>
+        </section>
+        <section id="reader-reviews" class="panel dashboard-reviews" aria-labelledby="dashboard-reviews-title">
+            <p class="eyebrow">Reader voices</p>
+            <h2 id="dashboard-reviews-title">Book reviews</h2>
+            <p>Already reading the early access edition? Share your honest thoughts and mark any spoilers.</p>
+
+<p class="reviews-help">Reviews are posted by readers signed in with Google. Sign-in confirms an account; it does not confirm a book purchase.</p>
+<div id="book-review-list" aria-live="polite"><p>Loading reader reviews…</p></div>
+<div id="review-signin"><a class="review-google-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/google/login?return=reviews">Continue with Google to write a review</a></div>
+<form id="book-review-form" hidden>
+<h4>Your review</h4>
+<p id="review-author"></p>
+<label for="review-rating">Rating</label>
+<select id="review-rating" required><option value="">Choose a rating</option><option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option></select>
+<label for="review-text">Your thoughts on the book</label>
+<textarea id="review-text" rows="5" minlength="10" maxlength="5000" required placeholder="Share your honest reading experience."></textarea>
+<label class="review-spoiler-option"><input id="review-spoiler" type="checkbox"> Contains spoilers</label>
+<p class="reviews-help">Reviews are checked before publication. Your Google display name, rating, review and date will be public after approval. Please keep personal information out of your review.</p>
+<button class="review-submit" type="submit">Submit</button>
+<button id="review-delete" type="button" hidden>Remove my review</button>
+</form>
+<p id="review-status" role="status" aria-live="polite"></p>
+
         </section>
     </main>
 

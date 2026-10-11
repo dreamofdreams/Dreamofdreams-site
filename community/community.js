@@ -221,6 +221,8 @@
             view.memberAvatar.alt = user.avatarUrl ? `${user.displayName}'s community avatar` : '';
             view.memberAvatar.referrerPolicy = 'no-referrer';
             view.status.textContent = `Signed in as ${user.displayName}.`;
+            const provider = documentRef.getElementById('member-provider');
+            if (provider) provider.textContent = 'Signed in with ' + ({google: 'Google', tiktok: 'TikTok', email: 'email'}[user.provider] || 'your community account');
         }
 
         async function refresh() {

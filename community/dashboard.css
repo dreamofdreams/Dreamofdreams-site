@@ -1,0 +1,12 @@
+
+.dashboard-header-nav,.dashboard-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+.dashboard-header-nav{justify-content:flex-end;font-size:.9rem}
+.dashboard-actions{margin-bottom:1.5rem}
+.member-provider{font-size:.85rem;color:var(--gold-light)}
+.dashboard-reviews{margin-top:3rem;padding:clamp(1.25rem,4vw,2.5rem)}
+#reader-reviews .reviews-help,#reader-reviews .review-meta{color:var(--muted)}
+#reader-reviews .review-stars,#reader-reviews details summary{color:var(--gold-light)}
+#reader-reviews .book-review-card{border-color:var(--panel-border)}
+#reader-reviews #review-delete{color:var(--ink);border-color:var(--panel-border)}
+.resource-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:48rem){.resource-grid{grid-template-columns:1fr}.dashboard-actions a{flex:1 1 100%}.dashboard-header-nav{gap:.6rem;font-size:.8rem}.site-header{flex-wrap:wrap}}

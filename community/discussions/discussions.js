@@ -372,13 +372,7 @@
     async function refresh() {
         show('loading', 'Checking your community membership.');
         try {
-            const response = await root.fetch(origin + '/community/auth/me', {
-                method: 'GET', credentials: 'include', cache: 'no-store',
-                headers: { Accept: 'application/json' }
-            });
-            if (response.status === 401) return show('signed-out', 'Log in to enter the reading room.');
-            if (!response.ok) throw new Error('SERVICE_UNAVAILABLE');
-            const profile = await response.json();
+            const profile = await api('/community/auth/me');
             const name = profile?.user?.displayName;
             if (profile.authenticated !== true || typeof name !== 'string' || !name.trim() ||
                 !['email', 'google', 'tiktok'].includes(profile.user.provider)) throw new Error('INVALID_PROFILE');
@@ -386,7 +380,10 @@
             show('member', 'Welcome to the reading room, ' + name.trim() + '.');
             await loadTikTokCapability();
             await loadThreads();
-        } catch (_) { show('error', 'The reading room could not check your membership.'); }
+        } catch (error) {
+            if (error.message === 'LOGIN_REQUIRED') show('signed-out', 'Log in to enter the reading room.');
+            else show('error', 'The reading room could not check your membership. Please try again.');
+        }
     }
 
     function start() {
