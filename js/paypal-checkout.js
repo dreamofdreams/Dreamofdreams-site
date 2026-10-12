@@ -19,6 +19,7 @@
       label: "paypal"
     },
     createOrder: async function() {
+      if (typeof window.DODAnalyticsTrack === 'function') window.DODAnalyticsTrack('early_access_click');
       if (statusDiv) {
         statusDiv.innerText = "Initiating payment with checkout backend...";
         statusDiv.style.color = "#C5A059";

@@ -210,6 +210,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <script src="book-reviews.js" defer></script>
 <link rel="stylesheet" href="/release-countdown.css?v=20261011">
 <script src="/release-countdown.js?v=20261011" defer></script>
+<script defer src="/website-analytics.js?v=20261012"></script>
 </head>
 
 <body class="home wp-singular page-template-default page page-id-13 wp-embed-responsive wp-theme-oceanwp oceanwp-theme dropdown-mobile no-header-border default-breakpoint has-sidebar content-right-sidebar page-header-disabled has-breadcrumbs elementor-default elementor-template-full-width elementor-kit-6 elementor-page elementor-page-13" itemscope="itemscope" itemtype="https://schema.org/WebPage">
@@ -800,6 +801,7 @@ Through epic journeys of love, sacrifice, adventure, and the timeless struggle b
                           })
                           .then(data => {
                             if (data && data.ok) {
+                        if (typeof window.DODAnalyticsTrack === 'function') window.DODAnalyticsTrack('newsletter_signup');
                               form.style.display = 'none';
                               responseMessage.textContent = 'Thank you for joining the legacy.';
                               responseMessage.style.color = '#fff';
