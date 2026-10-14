@@ -5,6 +5,20 @@ const list=document.getElementById('book-review-list');
 if(!list)return;
 const form=document.getElementById('book-review-form'), status=document.getElementById('review-status');
 const remove=document.getElementById('review-delete');
+const signin=document.getElementById('review-signin');
+const loginIntentKey='dream-review-google-login';
+let reviewFlowActive=false;
+try {
+ const startedAt=Number(sessionStorage.getItem(loginIntentKey));
+ sessionStorage.removeItem(loginIntentKey);
+ reviewFlowActive=location.hash==='#reader-reviews' && startedAt>0 && Date.now()-startedAt>=0 && Date.now()-startedAt<10*60*1000;
+} catch (_) {}
+form.hidden=true;
+signin.hidden=false;
+signin.querySelector('a').addEventListener('click',event=>{
+ try { sessionStorage.setItem(loginIntentKey,String(Date.now())); }
+ catch (_) { event.preventDefault();status.textContent='Please allow session storage in your browser, then try signing in again.'; }
+});
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
 async function request(path,options={}) {
  const response=await fetch(base+path,{credentials:'include',signal:AbortSignal.timeout(20000),...options});
@@ -28,9 +42,10 @@ async function loadReviews() {
  }catch(e){list.replaceChildren(el('p','Reviews could not be loaded. Please try again shortly.'));}
 }
 async function loadOwn() {
+ if(!reviewFlowActive){form.hidden=true;return;}
  try {
   const own=await request('/community/reviews/me');
-  if(!own.authenticated)return;
+  if(own.authenticated!==true){form.hidden=true;return;}
   document.getElementById('review-signin').hidden=false;form.hidden=false;
   document.getElementById('review-author').textContent='Posting as '+own.displayName;
   document.getElementById('review-rating').value=own.review?.rating||'';
