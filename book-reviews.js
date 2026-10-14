@@ -31,7 +31,7 @@ async function loadOwn() {
  try {
   const own=await request('/community/reviews/me');
   if(!own.authenticated)return;
-  document.getElementById('review-signin').hidden=true;form.hidden=false;
+  document.getElementById('review-signin').hidden=false;form.hidden=false;
   document.getElementById('review-author').textContent='Posting as '+own.displayName;
   document.getElementById('review-rating').value=own.review?.rating||'';
   document.getElementById('review-text').value=own.review?.text||'';
