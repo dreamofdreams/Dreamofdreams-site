@@ -14,7 +14,7 @@
   window.paypal.Buttons({
     style: {
       layout: "vertical",
-      color: "gold",
+      color: "white",
       shape: "rect",
       label: "paypal"
     },
