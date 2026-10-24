@@ -17,3 +17,7 @@
 #review-delete {display:block;margin-top:12px;background:transparent;border:1px solid #8b7160;color:#493228;padding:8px 12px;cursor:pointer}
 #reader-reviews a:focus-visible,#reader-reviews button:focus-visible,#reader-reviews summary:focus-visible {outline:3px solid #2776b8;outline-offset:3px}
 #review-status {font-size:15px;line-height:1.6;margin-top:12px}
+#reader-reviews .review-submit-row {display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px}
+#review-photo-preview {margin-top:18px;max-width:420px}
+#review-photo-image,#reader-reviews .review-reader-photo {display:block;width:auto;max-width:100%;height:auto;max-height:520px;object-fit:contain;border-radius:6px;margin:12px 0}
+#review-remove-photo {background:#fff;border:1px solid #8b7160;color:#493228;padding:8px 12px;cursor:pointer;border-radius:4px}
