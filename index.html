@@ -206,8 +206,8 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     outline-offset: 3px;
 }
 </style>
-<link rel="stylesheet" href="book-reviews.css">
-<script src="book-reviews.js?v=20261014-session-aware" defer></script>
+<link rel="stylesheet" href="book-reviews.css?v=20261024-photos">
+<script src="book-reviews.js?v=20261024-photos" defer></script>
 <link rel="stylesheet" href="/release-countdown.css?v=20261011">
 <script src="/release-countdown.js?v=20261011" defer></script>
 <script defer src="/website-analytics.js?v=20261012"></script>
@@ -675,8 +675,11 @@ Through epic journeys of love, sacrifice, adventure, and the timeless struggle b
 <label for="review-text">Your thoughts on the book</label>
 <textarea id="review-text" rows="5" minlength="10" maxlength="5000" required placeholder="Share your honest reading experience."></textarea>
 <label class="review-spoiler-option"><input id="review-spoiler" type="checkbox"> Contains spoilers</label>
-<p class="reviews-help">Reviews are checked before publication. Your Google display name, rating, review and date will be public after approval. Please keep personal information out of your review.</p>
-<button class="review-submit" type="submit">Submit</button>
+<p class="reviews-help">Reviews are checked before publication. Your Google display name, rating, review, date and optional photo will be public after approval. Share your honest reading experience and keep personal information out of your review.</p>
+<div id="review-photo-preview" hidden><img id="review-photo-image" alt="Your review photo preview"><button id="review-remove-photo" type="button">Remove photo</button></div>
+<label id="review-photo-consent-label" class="review-spoiler-option" hidden><input id="review-photo-consent" type="checkbox"> I have permission to share this photo publicly with my review.</label>
+<div class="review-submit-row"><input id="review-photo" type="file" accept="image/jpeg,image/png,image/webp" hidden><button id="review-add-photo" class="review-google-button" type="button">Add photo</button><button class="review-submit" type="submit">Submit</button></div>
+<p class="reviews-help">Optional photo: JPEG, PNG or WebP, up to 10 MB. Location metadata is removed before the photo is saved.</p>
 <button id="review-delete" type="button" hidden>Remove my review</button>
 </form>
 <p id="review-status" role="status" aria-live="polite"></p>
