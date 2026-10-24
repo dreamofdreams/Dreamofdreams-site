@@ -9,7 +9,8 @@ const signin=document.getElementById('review-signin');
 const photoInput=document.getElementById('review-photo'),photoPreview=document.getElementById('review-photo-preview'),photoImage=document.getElementById('review-photo-image');
 const photoConsent=document.getElementById('review-photo-consent'),photoConsentLabel=document.getElementById('review-photo-consent-label');
 let selectedPhoto=null,removePhoto=false,previewObjectUrl=null;
-function showPhoto(url){photoPreview.hidden=!url;photoConsentLabel.hidden=!url;photoConsent.required=Boolean(url);if(url)photoImage.src=url;else photoImage.removeAttribute('src');}
+// The photo API allows credentialed CORS; use it for saved photos and private previews.
+function showPhoto(url){photoPreview.hidden=!url;photoConsentLabel.hidden=!url;photoConsent.required=Boolean(url);if(url){photoImage.crossOrigin='use-credentials';photoImage.src=url;}else photoImage.removeAttribute('src');}
 function resetLocalPhoto(){if(previewObjectUrl)URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null;selectedPhoto=null;photoInput.value='';}
 document.getElementById('review-add-photo').addEventListener('click',()=>photoInput.click());
 photoInput.addEventListener('change',()=>{
@@ -46,7 +47,7 @@ async function loadReviews() {
    card.append(el('p','Signed in with Google · '+new Date(review.createdAt).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}),'review-meta'));
    const text=el('p',review.text,'elementor-testimonial__text');
    const content=el('div');content.append(text);
-   if(review.photoUrl){try{const url=new URL(review.photoUrl);if(url.origin===base&&url.pathname==='/community/reviews'&&url.searchParams.has('photo')){const image=el('img',null,'review-reader-photo');image.src=url.href;image.alt='Reader photo shared with '+review.displayName+'’s review';image.loading='lazy';image.decoding='async';content.append(image);}}catch{}}
+   if(review.photoUrl){try{const url=new URL(review.photoUrl);if(url.origin===base&&url.pathname==='/community/reviews'&&url.searchParams.has('photo')){const image=el('img',null,'review-reader-photo');image.crossOrigin='use-credentials';image.src=url.href;image.alt='Reader photo shared with '+review.displayName+'’s review';image.loading='lazy';image.decoding='async';content.append(image);}}catch{}}
    if(review.spoiler){const details=el('details');details.append(el('summary','Contains spoilers — show review'),content);card.append(details);}else card.append(content);
    list.append(card);
   });
