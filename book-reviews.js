@@ -30,6 +30,27 @@ async function preparePhoto(file){
 form.hidden=true;
 signin.hidden=false;
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
+const carouselControls=document.getElementById('review-carousel-controls'),previous=document.getElementById('review-previous'),next=document.getElementById('review-next'),position=document.getElementById('review-carousel-position');
+function carouselIndex(cards){
+ const left=list.getBoundingClientRect().left;
+ return cards.reduce((best,card,i)=>Math.abs(card.getBoundingClientRect().left-left)<Math.abs(cards[best].getBoundingClientRect().left-left)?i:best,0);
+}
+function updateCarousel(){
+ const cards=[...list.querySelectorAll('.book-review-card')];carouselControls.hidden=!cards.length;
+ if(!cards.length){previous.disabled=true;next.disabled=true;position.textContent='';return;}
+ position.textContent=(carouselIndex(cards)+1)+' of '+cards.length;
+ previous.disabled=list.scrollLeft<=1;next.disabled=list.scrollWidth-list.clientWidth-list.scrollLeft<=1;
+}
+function moveCarousel(direction){
+ const cards=[...list.querySelectorAll('.book-review-card')];if(!cards.length)return;
+ const index=Math.max(0,Math.min(cards.length-1,carouselIndex(cards)+direction));
+ list.scrollTo({left:list.scrollLeft+cards[index].getBoundingClientRect().left-list.getBoundingClientRect().left,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+}
+previous.addEventListener('click',()=>moveCarousel(-1));next.addEventListener('click',()=>moveCarousel(1));
+list.addEventListener('keydown',event=>{if(event.target!==list)return;if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();moveCarousel(event.key==='ArrowLeft'?-1:1);}});
+let carouselFrame=0;
+function scheduleCarouselUpdate(){if(!carouselFrame)carouselFrame=requestAnimationFrame(()=>{carouselFrame=0;updateCarousel();});}
+list.addEventListener('scroll',scheduleCarouselUpdate,{passive:true});new ResizeObserver(scheduleCarouselUpdate).observe(list);
 async function request(path,options={}) {
  const response=await fetch(base+path,{credentials:'include',signal:AbortSignal.timeout(20000),...options});
  const payload=response.status===204?null:await response.json();
@@ -40,8 +61,9 @@ async function loadReviews() {
  try {
   const data=await request('/community/reviews');list.replaceChildren();
   if(!data.reviews.length)list.append(el('p','No reader reviews yet. Be the first to review.','elementor-testimonial__text'));
-  data.reviews.forEach(review=>{
+  data.reviews.forEach((review,index)=>{
    const card=el('article',null,'book-review-card elementor-testimonial');
+   card.setAttribute('role','group');card.setAttribute('aria-roledescription','slide');card.setAttribute('aria-label','Review '+(index+1)+' of '+data.reviews.length);
    card.append(el('p',review.displayName,'review-name'));
    const stars=el('p','★'.repeat(review.rating)+'☆'.repeat(5-review.rating),'review-stars');stars.setAttribute('aria-label',review.rating+' out of 5 stars');card.append(stars);
    card.append(el('p','Signed in with Google · '+new Date(review.createdAt).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}),'review-meta'));
@@ -51,7 +73,8 @@ async function loadReviews() {
    if(review.spoiler){const details=el('details');details.append(el('summary','Contains spoilers — show review'),content);card.append(details);}else card.append(content);
    list.append(card);
   });
- }catch(e){list.replaceChildren(el('p','Reviews could not be loaded. Please try again shortly.'));}
+  list.scrollLeft=0;updateCarousel();
+ }catch(e){list.replaceChildren(el('p','Reviews could not be loaded. Please try again shortly.'));updateCarousel();}
 }
 async function loadOwn() {
  try {

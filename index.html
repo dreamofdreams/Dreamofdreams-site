@@ -206,8 +206,8 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     outline-offset: 3px;
 }
 </style>
-<link rel="stylesheet" href="book-reviews.css?v=20261024-photo-size">
-<script src="book-reviews.js?v=20261024-photo-display" defer></script>
+<link rel="stylesheet" href="book-reviews.css?v=20261024-carousel">
+<script src="book-reviews.js?v=20261024-carousel" defer></script>
 <link rel="stylesheet" href="/release-countdown.css?v=20261011">
 <script src="/release-countdown.js?v=20261011" defer></script>
 <script defer src="/website-analytics.js?v=20261012"></script>
@@ -665,7 +665,14 @@ Through epic journeys of love, sacrifice, adventure, and the timeless struggle b
 <div class="elementor-testimonial" id="reader-reviews">
 <div class="elementor-testimonial__content">
 <p class="reviews-help">Reviews are posted by readers signed in with Google. Sign-in confirms an account; it does not confirm a book purchase.</p>
-<div id="book-review-list" aria-live="polite"><p>Loading reader reviews…</p></div>
+<div class="review-carousel" role="region" aria-roledescription="carousel" aria-label="Reader reviews">
+<div class="review-carousel-controls" id="review-carousel-controls" hidden>
+<span id="review-carousel-position" aria-live="polite" aria-atomic="true"></span>
+<button id="review-previous" type="button" aria-label="Previous review" aria-controls="book-review-list" disabled>&larr;</button>
+<button id="review-next" type="button" aria-label="Next review" aria-controls="book-review-list" disabled>&rarr;</button>
+</div>
+<div id="book-review-list" tabindex="0" aria-label="Reviews. Use the left and right arrow keys to browse." aria-live="polite"><p>Loading reader reviews…</p></div>
+</div>
 <div id="review-signin"><a class="review-google-button" href="https://dod-social-auth-gateway-190c9rby.uc.gateway.dev/community/google/login?return=reviews">Log in with Google to write a review</a></div>
 <form id="book-review-form" hidden>
 <h4>Your review</h4>
