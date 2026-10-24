@@ -1,7 +1,14 @@
 #reader-reviews {width:100%;scroll-margin-top:100px}
 #reader-reviews [hidden] {display:none!important}
 #reader-reviews .reviews-help {font-size:14px;line-height:1.65;color:#575249}
-#reader-reviews .book-review-card {margin:22px 0;padding:22px 0;border-bottom:1px solid #d7cdb6}
+#reader-reviews .review-carousel {min-width:0;margin:20px 0}
+#book-review-list {display:flex;gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:thin;align-items:flex-start}
+#reader-reviews .book-review-card {flex:0 0 100%;min-width:0;box-sizing:border-box;scroll-snap-align:start;margin:0;padding:16px;border:1px solid #d7cdb6;border-radius:6px}
+#reader-reviews .review-carousel-controls {display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-bottom:10px}
+#review-carousel-position {font-size:13px;color:#575249;margin-right:4px}
+#reader-reviews .review-carousel-controls button {display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid #bca574;border-radius:50%;background:#fff;color:#70551c;font:inherit;font-size:22px;cursor:pointer}
+#reader-reviews .review-carousel-controls button:disabled {opacity:.35;cursor:default}
+#book-review-list:focus-visible {outline:3px solid #2776b8;outline-offset:3px}
 #reader-reviews .review-stars {color:#82621e;font-size:22px;letter-spacing:2px}
 #reader-reviews .review-name {font-weight:700;font-size:17px;margin-bottom:4px}
 #reader-reviews .review-meta {font-size:13px;color:#575249}
@@ -18,6 +25,6 @@
 #reader-reviews a:focus-visible,#reader-reviews button:focus-visible,#reader-reviews summary:focus-visible {outline:3px solid #2776b8;outline-offset:3px}
 #review-status {font-size:15px;line-height:1.6;margin-top:12px}
 #reader-reviews .review-submit-row {display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px}
-#review-photo-preview {margin-top:18px;max-width:180px}
-#review-photo-image,#reader-reviews .review-reader-photo {display:block;width:auto;max-width:min(100%,180px);height:auto;max-height:200px;object-fit:contain;border-radius:6px;margin:12px 0}
+#review-photo-preview {margin-top:18px;max-width:100px}
+#review-photo-image,#reader-reviews .review-reader-photo {display:block;width:auto;max-width:min(100%,100px);height:auto;max-height:120px;object-fit:contain;border-radius:6px;margin:12px 0}
 #review-remove-photo {background:#fff;border:1px solid #8b7160;color:#493228;padding:8px 12px;cursor:pointer;border-radius:4px}
