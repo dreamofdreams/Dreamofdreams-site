@@ -219,3 +219,10 @@ This is a static HTML/JS website, compiled from a WordPress export (utilizing th
   - *Fix:* Executed a comprehensive batch update of the "Buy Book" list-item menu links (both desktop and mobile duplicates) across all 18 HTML files (36 instances in total) in the codebase. Corrected the `href` values so they point cleanly to the `#purchase-options` sales target container using proper relative paths adapted to the directory depth of each file (e.g. `#purchase-options` on the homepage, `index.html#purchase-options` for top-level pages, `../index.html#purchase-options` for 1-depth nested pages, and `../../index.html#purchase-options` for 2-depth nested pages).
 - **Next Step:** Obtain final visual and interactive approval on mobile/tablet from the user on the local HTTP preview server before staging, committing, or pushing.
 
+
+## GrandRanker main-domain publishing
+- Added `scripts/sync_grandranker.py` to render public receiver articles into `/blogs/:slug/`, prepend cards to both existing blog indexes, preserve the three existing article pages, and generate sitemap/robots. Full content and metadata are static HTML. A clean checkout removes unpublished or renamed generated pages from the next deployment.
+- `.github/workflows/publish-site.yml` deploys the complete existing site plus generated article pages through GitHub Pages. It runs on main-branch changes or explicit workflow dispatch only. There is NO schedule or background polling. The backend dispatches it after authenticated article changes.
+- No Google credentials or webhook secrets are used by the site build. Runtime GitHub dispatch credential permission is blocked pending explicit user approval.
+- Unit checks cover export, canonical paths, asset links, rename/delete, legacy preservation, hostile URLs, and source failure.
+- Resume: verify first Actions deployment, authorize runtime read of only the GitHub publishing secret, deploy new webhook image, and verify an end-to-end article appears and is removed on dreamofdreams.com.
