@@ -219,3 +219,10 @@ This is a static HTML/JS website, compiled from a WordPress export (utilizing th
   - *Fix:* Executed a comprehensive batch update of the "Buy Book" list-item menu links (both desktop and mobile duplicates) across all 18 HTML files (36 instances in total) in the codebase. Corrected the `href` values so they point cleanly to the `#purchase-options` sales target container using proper relative paths adapted to the directory depth of each file (e.g. `#purchase-options` on the homepage, `index.html#purchase-options` for top-level pages, `../index.html#purchase-options` for 1-depth nested pages, and `../../index.html#purchase-options` for 2-depth nested pages).
 - **Next Step:** Obtain final visual and interactive approval on mobile/tablet from the user on the local HTTP preview server before staging, committing, or pushing.
 
+
+
+## Chapter 1 Books Button Repair — November 2, 2026
+- User approved publishing the link correction.
+- Updated `books.html` and `books/index.html`: READ CHAPTER 1 — FREE now links to the existing `dream-of-dreams-chapter-1-sample.pdf`, using the correct relative path for each page.
+- Verified both relative targets resolve to the same sample PDF; the public PDF returned HTTP 200 with application/pdf.
+- Presentation and new-tab behavior preserved. Changes committed to main; verify live deployment after GitHub Pages refreshes.
