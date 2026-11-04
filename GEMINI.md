@@ -226,3 +226,12 @@ This is a static HTML/JS website, compiled from a WordPress export (utilizing th
 - Updated `books.html` and `books/index.html`: READ CHAPTER 1 — FREE now links to the existing `dream-of-dreams-chapter-1-sample.pdf`, using the correct relative path for each page.
 - Verified both relative targets resolve to the same sample PDF; the public PDF returned HTTP 200 with application/pdf.
 - Presentation and new-tab behavior preserved. Changes committed to main; verify live deployment after GitHub Pages refreshes.
+
+## Approved Discussion Board Branding — November 3, 2026
+- User approved the previously reviewed mobile/desktop previews and requested publication, including the live dashboard.
+- Restored the approved branding onto current main, preserving the November 2 Chapter 1 link fix.
+- Updated community entry, discussions, forgot/reset-password pages and shared header styling: consistent Dream of Dreams Discussion Board name, original app logo, and matching favicon.
+- Updated Privacy Policy and Terms headings/header identity and factual discussion description; removed broken legacy stylesheet references in favor of scoped policy styling. Existing legal URLs and authentication flows are preserved.
+- Verified six pages at 390px and 1280px: no horizontal overflow, broken images, or local asset failures. Browser rendering used headless Chromium; this environment cannot launch Android Termux.
+- Deployment: publish this approved change through GitHub Pages. The first-party dashboard is separately hosted on the community-web traffic tag of dreamofdreams-social-auth; update that isolated frontend from its actual deployed image, preserving all other traffic targets and API behavior.
+- Resume point: verify public pages and tagged dashboard branding live; TikTok review submission is a separate platform step. No promo scheduler changes are authorized by this branding task.

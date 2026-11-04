@@ -126,6 +126,11 @@ main {
     text-decoration: none;
 }
 
+.brand span {
+    max-width: 15rem;
+    line-height: 1.2;
+}
+
 .brand img {
     width: 3rem;
     height: 3rem;
