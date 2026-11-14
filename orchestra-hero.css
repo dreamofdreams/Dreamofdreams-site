@@ -1,0 +1,52 @@
+/* Orchestra backdrop, scoped to the homepage wordmark. */
+.homepage-main-title-container.orchestra-hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    min-height: clamp(220px, 30vw, 390px);
+    padding: 48px 24px;
+    background: #f5f3e8;
+}
+.orchestra-hero__video,
+.orchestra-hero__shade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.orchestra-hero__video { object-fit: cover; object-position: center 45%; opacity: 0; transition: opacity .5s ease; }
+.orchestra-hero[data-playing="true"] .orchestra-hero__video { opacity: 1; }
+.orchestra-hero__shade { background: linear-gradient(180deg, #100c0838, #100c0866); opacity: 0; }
+.orchestra-hero[data-playing="true"] .orchestra-hero__shade { opacity: 1; }
+.orchestra-hero .dream-title-group { position: relative; z-index: 1; pointer-events: none; filter: drop-shadow(0 2px 7px #20150680); }
+.orchestra-hero__sound {
+    position: absolute;
+    z-index: 2;
+    bottom: 16px;
+    right: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    padding: 10px;
+    border: 1px solid #e7ce92a6 !important;
+    border-radius: 50%;
+    color: #eddaaa !important;
+    background: #20180c99 !important;
+    cursor: pointer;
+}
+.orchestra-hero__sound[hidden] { display: none; }
+.orchestra-hero__sound:hover { background: #392a16e6 !important; }
+.orchestra-hero__sound:focus-visible { outline: 3px solid #d2ad59; outline-offset: 4px; }
+.orchestra-hero__sound svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.orchestra-hero__sound[aria-pressed="false"] .sound-waves,
+.orchestra-hero__sound[aria-pressed="true"] .sound-slash { display: none; }
+@media (max-width: 767px) {
+    .homepage-main-title-container.orchestra-hero { min-height: 235px; padding: 40px 18px 56px; }
+    .orchestra-hero__sound { bottom: 10px; right: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .orchestra-hero__video { transition: none; }
+}

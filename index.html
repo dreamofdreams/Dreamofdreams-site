@@ -269,6 +269,8 @@ outline:3px solid #b08b43;outline-offset:4px;
 .dod-release-bar a.dod-subscribe-button:hover{background:#745715;color:#fff}
 #start-your-journey{scroll-margin-top:24px}
 </style>
+<link rel="stylesheet" href="orchestra-hero.css">
+<script src="orchestra-hero.js" defer></script>
 </head>
 
 <body class="home wp-singular page-template-default page page-id-13 wp-embed-responsive wp-theme-oceanwp oceanwp-theme dropdown-mobile no-header-border default-breakpoint has-sidebar content-right-sidebar page-header-disabled has-breadcrumbs elementor-default elementor-template-full-width elementor-kit-6 elementor-page elementor-page-13" itemscope="itemscope" itemtype="https://schema.org/WebPage">
@@ -359,7 +361,14 @@ outline:3px solid #b08b43;outline-offset:4px;
 		</div>
 					</div>
 		</section>
-				<div class="homepage-main-title-container">
+				<div class="homepage-main-title-container orchestra-hero" data-playing="false">
+                        <!-- Optimized copy of the supplied orchestra recording. -->
+                        <video src="media/orchestra-homepage.mp4" class="orchestra-hero__video" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video>
+                        <div class="orchestra-hero__shade" aria-hidden="true"></div>
+                        <button class="orchestra-hero__sound" type="button" aria-label="Play orchestra with sound" aria-pressed="false" hidden>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4Z"/><g class="sound-waves"><path d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></g><path class="sound-slash" d="m16 9 5 6m0-6-5 6"/></svg>
+                        </button>
+                        <span class="screen-reader-text" role="status" aria-live="polite"></span>
 					<div class="dream-title-group">
 						<img src="images/dream-of-dreams-wordmark.png" class="book-wordmark-title" alt="Dream of Dreams" />
 						<img src="images/dream-of-dreams-divider.png" class="book-wordmark-divider" alt="" />

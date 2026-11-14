@@ -236,3 +236,10 @@ This is a static HTML/JS website, compiled from a WordPress export (utilizing th
 - Published through site PR #15, merged as fd5c2c6b61232646f25c016b3dfa79a15871bcd3. Public community, Privacy Policy, and Terms returned HTTP 200 with the approved titles. Live pages passed mobile/desktop browser checks with no overflow or broken images.
 - The first-party dashboard was rebuilt as a narrow branding overlay over its exact deployed image and verified before promoting only the community-web tag to dreamofdreams-social-auth-branding-48e6cd7. Both gateway dashboard pages returned HTTP 200 with the approved titles/favicon. All other service traffic targets were verified unchanged.
 - Resume point: approved website/dashboard branding is published. TikTok app-review resubmission and any portal app-name/icon edits remain separate platform steps; this deployment does not claim TikTok approval. No promo scheduler changes were made.
+
+## Homepage orchestra backdrop — November 13, 2026
+
+- Owner approved the original orchestra preview and deployment after reverting the softened transparency variant.
+- Homepage uses `orchestra-hero.css`, `orchestra-hero.js`, and `media/orchestra-homepage.mp4`: full 127.21-second recording optimized to 720p H.264/AAC with faststart (11.5 MB), muted inline autoplay/loop and accessible light gold sound control. Original opacity and shading restored.
+- Prior preview verified real footage playback and sound toggling, including 390px mobile layout. Production source is same-origin to avoid Drive startup/codec issues.
+- Resume point: verify GitHub Pages deployment for this commit; no scheduler changes.
