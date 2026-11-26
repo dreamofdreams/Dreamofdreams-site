@@ -250,5 +250,5 @@ This is a static HTML/JS website, compiled from a WordPress export (utilizing th
 - All HTML pages use the same versioned favicon links; community and legal page header/avatar fallback references use the same square app-logo asset. Existing homepage logo preserved.
 - TikTok rejection specifically flags icon consistency across website, browser tab and policy pages.
 - Validation: all 44 HTML pages point to matching icon assets; homepage, community, legal pages, favicon PNG and ICO returned HTTP 200 in local source checks; image dimensions and git diff --check passed. Cloud browser could not access the local preview due to browser URL policy; Android Termux launcher is unavailable in this environment.
-- Owner approved the prepared icon preview on November 26, 2026 and authorized publishing. Status: publishing approved changes; live verification pending.
-- Resume point: commit/push approved changes and verify GitHub Pages serves the updated icon links/assets.
+- Owner approved the prepared icon preview on November 26, 2026. Published source commit 42593617268d5bc0bbc33543bc97b0009d203ce3 through the connected GitHub account. GitHub Pages workflow 45792538594 completed successfully. Live homepage, Privacy Policy, Terms, community, PNG icons and root favicon.ico returned HTTP 200; HTML links and downloaded image bytes match the approved change.
+- Resume point: owner can reopen the website tab to refresh its cached favicon and resubmit the TikTok review. TikTok approval is not claimed. No scheduler changes.
