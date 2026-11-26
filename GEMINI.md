@@ -243,3 +243,12 @@ This is a static HTML/JS website, compiled from a WordPress export (utilizing th
 - Homepage uses `orchestra-hero.css`, `orchestra-hero.js`, and `media/orchestra-homepage.mp4`: full 127.21-second recording optimized to 720p H.264/AAC with faststart (11.5 MB), muted inline autoplay/loop and accessible light gold sound control. Original opacity and shading restored.
 - Prior preview verified real footage playback and sound toggling, including 390px mobile layout. Production source is same-origin to avoid Drive startup/codec issues.
 - Resume point: verify GitHub Pages deployment for this commit; no scheduler changes.
+
+
+## Unified app icon and favicon — November 26, 2026
+- Prepared matching 32px/192px favicons, 180px Apple icon, 1024px app icon and root favicon.ico from logo_transparent.png (identical bytes to the supplied 25806.png).
+- All HTML pages use the same versioned favicon links; community and legal page header/avatar fallback references use the same square app-logo asset. Existing homepage logo preserved.
+- TikTok rejection specifically flags icon consistency across website, browser tab and policy pages.
+- Validation: all 44 HTML pages point to matching icon assets; homepage, community, legal pages, favicon PNG and ICO returned HTTP 200 in local source checks; image dimensions and git diff --check passed. Cloud browser could not access the local preview due to browser URL policy; Android Termux launcher is unavailable in this environment.
+- Owner approved the prepared icon preview on November 26, 2026 and authorized publishing. Status: publishing approved changes; live verification pending.
+- Resume point: commit/push approved changes and verify GitHub Pages serves the updated icon links/assets.
